@@ -5,7 +5,7 @@ spring framework 5.1.5的maven版本
 
 ## 顶层目录说明
 
-1. normal-to-maven 将普通eclipse工程的依赖jar装maven的依赖  
+1. normal-to-maven 将普通eclipse工程的依赖jar转为maven的具体依赖  
 2. spring-framework-parent-5.1.5 这是spring framework的5.1.5版本的源码  
 
 ## 如何将spring的gradle的源码转为eclipse的普通工程?
