@@ -11,3 +11,26 @@ spring framework 5.1.5的maven版本
 
 ## 如果将eclipse的普通工程转为maven工程?
 我的解决办法是自己创建spring framework的maven版本的工程,然后通过...来帮助解决maven依赖问题
+
+## 如何解决spring-beans中GroovyBeanDefinitionReader报错的问题
+GroovyBeanDefinitionReader报错是因为需要引用GroovyDynamicElementReader,而GroovyDynamicElementReader需要groovy的GROOVY_DSL_SUPPORT的支持
+解决步骤是,此处有一个前提是你已经在eclipse正取安装groovy的插件  
+1. 在自己创建的spring-beans的所在目录找到.classpath,并打开,加入如下配置
+```
+<classpathentry exported="true" kind="con" path="GROOVY_DSL_SUPPORT">
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
+		</attributes>
+</classpathentry>
+```
+2. 在自己创建的spring-beans的所在目录找到.project,并打开,加入如下配置
+```
+<natures>
+		<nature>org.eclipse.jdt.core.javanature</nature>
+		<nature>org.eclipse.m2e.core.maven2Nature</nature>
+		<nature>org.eclipse.jdt.groovy.core.groovyNature</nature>
+</natures>
+```
+3. 最后在eclipse中clean一下spring-beans即可
+
+
