@@ -3,6 +3,11 @@ spring framework 5.1.5的maven版本
 
 [spring framework官方源码地址](https://github.com/spring-projects/spring-framework),此处我取的release中的5.1.5版本
 
+## 顶层目录说明
+
+1. normal-to-maven 将普通eclipse工程的依赖jar转为maven的具体依赖  
+2. spring-framework-parent-5.1.5 这是spring framework的5.1.5版本的源码  
+
 ## 如何将spring的gradle的源码转为eclipse的普通工程?
 请见文章: [记一次spring5源码完整编译过程](https://blog.csdn.net/coder_no/article/details/83315981)  
 将安装eclipse的groovy插件一定要查看自己的eclipse版本与之对应才行,请前文章  
