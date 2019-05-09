@@ -2,12 +2,15 @@ package cn.wulin.maven;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FilenameFilter;
 import java.nio.file.Path;
 import java.nio.file.WatchEvent;
 import java.nio.file.WatchKey;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
 import org.apache.commons.lang3.StringUtils;
@@ -128,6 +131,52 @@ public class FileUtil {
 			System.out.println("deletefile() Exception:" + e.getMessage());
 		}
 		return true;
+	}
+	
+	/**
+	 * 得到 .classpath 文件
+	 * @return
+	 */
+	public static List<File> getClassPathFiles(String root_path){
+		List<File> returnFiles = new ArrayList<File>();
+		File rootFile = new File(FileUtil.replaceSpritAndNotEnd(root_path));
+		
+		if(!rootFile.exists() || !rootFile.isDirectory()){
+			System.out.println("指定的根目录不存在,退出转换!");
+			System.exit(0);
+		}
+		
+		getClassPathFiles(returnFiles,rootFile);
+		return returnFiles;
+	}
+	
+	/**
+	 * 递归得到 得到 .classpath 文件
+	 * @param returnFiles
+	 * @param parentFile
+	 */
+	private static void getClassPathFiles(List<File> returnFiles,File parentFile){
+		if(parentFile.isFile()){
+			returnFiles.add(parentFile);
+		}else{
+			File[] listFiles = parentFile.listFiles(new FilenameFilter(){
+				@Override
+				public boolean accept(File dir, String name) {
+					if(".classpath".equals(name)){
+						return true;
+					}
+					
+					File tempFile = new File(dir,name);
+					if(tempFile.isDirectory()){
+						return true;
+					}
+					return false;
+				}
+			});
+			for (File subParentFile : listFiles) {
+				getClassPathFiles(returnFiles,subParentFile);
+			}
+		}
 	}
 	
 }

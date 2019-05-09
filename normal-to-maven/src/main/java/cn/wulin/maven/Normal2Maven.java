@@ -23,7 +23,7 @@ public class Normal2Maven {
 	
 	public static void main(String[] args) {
 		Normal2Maven normal2Maven = new Normal2Maven();
-		List<File> classPathFiles = normal2Maven.getClassPathFiles();
+		List<File> classPathFiles = FileUtil.getClassPathFiles(root_path);
 		for (File classPathXml : classPathFiles) {
 //			System.out.println(classPathXml.getAbsolutePath());
 			ClassPath classPath = normal2Maven.parseClassPathXml(classPathXml);
@@ -108,51 +108,4 @@ public class Normal2Maven {
 		classPathEntry.setPath(path);
 		classPath.getClassPathEntryList().add(classPathEntry);
 	}
-	
-	/**
-	 * 得到 .classpath 文件
-	 * @return
-	 */
-	public List<File> getClassPathFiles(){
-		List<File> returnFiles = new ArrayList<File>();
-		File rootFile = new File(FileUtil.replaceSpritAndNotEnd(root_path));
-		
-		if(!rootFile.exists() || !rootFile.isDirectory()){
-			System.out.println("指定的根目录不存在,退出转换!");
-			System.exit(0);
-		}
-		
-		getClassPathFiles(returnFiles,rootFile);
-		return returnFiles;
-	}
-	
-	/**
-	 * 递归得到 得到 .classpath 文件
-	 * @param returnFiles
-	 * @param parentFile
-	 */
-	private void getClassPathFiles(List<File> returnFiles,File parentFile){
-		if(parentFile.isFile()){
-			returnFiles.add(parentFile);
-		}else{
-			File[] listFiles = parentFile.listFiles(new FilenameFilter(){
-				@Override
-				public boolean accept(File dir, String name) {
-					if(".classpath".equals(name)){
-						return true;
-					}
-					
-					File tempFile = new File(dir,name);
-					if(tempFile.isDirectory()){
-						return true;
-					}
-					return false;
-				}
-			});
-			for (File subParentFile : listFiles) {
-				getClassPathFiles(returnFiles,subParentFile);
-			}
-		}
-	}
-
 }
