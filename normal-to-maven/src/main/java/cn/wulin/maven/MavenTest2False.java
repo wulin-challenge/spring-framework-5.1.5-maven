@@ -16,7 +16,7 @@ import org.dom4j.io.XMLWriter;
 import cn.wulin.maven.domain.ClassPath;
 
 /**
- * 将导入eclipse的maven的src/test/java等目录变为
+ * 将导入eclipse的maven的src/test/java等目录变为正常目录
  * 
  * @author ThinkPad
  *
@@ -27,7 +27,7 @@ public class MavenTest2False {
 	/**
 	 * 根路径
 	 */
-	private static final String root_path = "D:\\software\\helpProgramming\\git_client\\git\\workspace_directory\\self_directory\\spring_source_maven_workspace\\spring-framework-parent";
+	private static final String root_path = "D:\\software\\helpProgramming\\git_client\\git\\workspace_directory\\self_directory\\spring_source_5.1.5_maven_workspace\\spring-framework-parent-5.1.5";
 
 	public static void main(String[] args) {
 		MavenTest2False mavenTest2False = new MavenTest2False();

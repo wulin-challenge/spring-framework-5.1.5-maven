@@ -335,22 +335,49 @@ public abstract class AnnotatedElementUtils {
 	 * the annotation hierarchy <em>above</em> the supplied {@code element} and
 	 * merge that annotation's attributes with <em>matching</em> attributes from
 	 * annotations in lower levels of the annotation hierarchy.
+	 * 
+	 * <p> 在提供的元素上方的注释层次结构中获取指定注释名称的第一个注释，并将注释的属性与注释层次结构的较低级别中的
+	 * 注释的匹配属性合并。
+	 * 
 	 * <p>Attributes from lower levels in the annotation hierarchy override attributes
 	 * of the same name from higher levels, and {@link AliasFor @AliasFor} semantics are
 	 * fully supported, both within a single annotation and within the annotation hierarchy.
+	 * 
+	 * <p> 注释层次结构中较低级别的属性会覆盖较高级别的同名属性，并且在单个注释内和注释层次结构中完全支持{@link AliasFor @AliasFor}语义。
+	 * 
 	 * <p>In contrast to {@link #getAllAnnotationAttributes}, the search algorithm used by
 	 * this method will stop searching the annotation hierarchy once the first annotation
 	 * of the specified {@code annotationName} has been found. As a consequence,
 	 * additional annotations of the specified {@code annotationName} will be ignored.
+	 * 
+	 * <p> 与getAllAnnotationAttributes相比，一旦找到指定的annotationName的第一个注释，此方法使用的搜索算法
+	 * 将停止搜索注释层次结构。 因此，将忽略指定annotationName的其他注释。
+	 * 
 	 * <p>This method follows <em>get semantics</em> as described in the
 	 * {@linkplain AnnotatedElementUtils class-level javadoc}.
-	 * @param element the annotated element
+	 * 
+	 * <p> 此方法遵循类级别javadoc中描述的get语义。
+	 * 
+	 * @param element the annotated element - 带注释的元素
+	 * 
 	 * @param annotationName the fully qualified class name of the annotation type to find
+	 * 
+	 * <p> 要查找的注释类型的完全限定类名
+	 * 
 	 * @param classValuesAsString whether to convert Class references into Strings or to
 	 * preserve them as Class references
+	 * 
+	 * <p> 是否将类引用转换为字符串或将它们保存为类引用
+	 * 
 	 * @param nestedAnnotationsAsMap whether to convert nested Annotation instances
 	 * into {@code AnnotationAttributes} maps or to preserve them as Annotation instances
+	 * 
+	 * <p> 是否将嵌套的Annotation实例转换为AnnotationAttributes映射或将它们保存为Annotation实例
+	 * 
 	 * @return the merged {@code AnnotationAttributes}, or {@code null} if not found
+	 * 
+	 * <p> 合并的AnnotationAttributes，如果未找到则为null
+	 * 
 	 * @since 4.2
 	 * @see #findMergedAnnotation(AnnotatedElement, Class)
 	 * @see #findMergedAnnotationAttributes(AnnotatedElement, String, boolean, boolean)
@@ -836,12 +863,24 @@ public abstract class AnnotatedElementUtils {
 	 * Search for annotations of the specified {@code annotationName} or
 	 * {@code annotationType} on the specified {@code element}, following
 	 * <em>get semantics</em>.
-	 * @param element the annotated element
-	 * @param annotationType the annotation type to find
+	 * 
+	 * <p> 搜索被指定的{@code annotationName}注解或者在被指定{@code element}中的{@code annotationType}
+	 * 遵循get语义
+	 * 
+	 * @param element the annotated element - 注解的元素
+	 * 
+	 * @param annotationType the annotation type to find - 要查找的注解类型
+	 * 
 	 * @param annotationName the fully qualified class name of the annotation
 	 * type to find (as an alternative to {@code annotationType})
-	 * @param processor the processor to delegate to
+	 * 
+	 * <p> 要查找的注释类型的完全限定类名（作为annotationType的替代）
+	 * 
+	 * @param processor the processor to delegate to - 要委托的处理器
+	 * 
 	 * @return the result of the processor (potentially {@code null})
+	 * 
+	 * <p> 处理器的结果（可能为null）
 	 */
 	@Nullable
 	private static <T> T searchWithGetSemantics(AnnotatedElement element,
@@ -857,14 +896,27 @@ public abstract class AnnotatedElementUtils {
 	 * Search for annotations of the specified {@code annotationName} or
 	 * {@code annotationType} on the specified {@code element}, following
 	 * <em>get semantics</em>.
-	 * @param element the annotated element
-	 * @param annotationTypes the annotation types to find
+	 * 
+	 * <p> 搜索被指定的{@code annotationName}注解或者在被指定{@code element}中的{@code annotationType}
+	 * 遵循get语义
+	 * 
+	 * @param element the annotated element- 注解的元素
+	 * @param annotationTypes the annotation types to find- 要查找的注解类型
 	 * @param annotationName the fully qualified class name of the annotation
 	 * type to find (as an alternative to {@code annotationType})
+	 * 
+	 * <p> 要查找的注释类型的完全限定类名（作为另一个annotationType）
+	 * 
 	 * @param containerType the type of the container that holds repeatable
 	 * annotations, or {@code null} if the annotation is not repeatable
-	 * @param processor the processor to delegate to
+	 * 
+	 * <p> 包含可重复注释的容器的类型，如果注释不可重复，则为null
+	 * 
+	 * @param processor the processor to delegate to - 要委托的处理器
 	 * @return the result of the processor (potentially {@code null})
+	 * 
+	 * <p> 处理器的结果（可能为null）
+	 * 
 	 * @since 4.3
 	 */
 	@Nullable
@@ -886,18 +938,43 @@ public abstract class AnnotatedElementUtils {
 	 * Perform the search algorithm for the {@link #searchWithGetSemantics}
 	 * method, avoiding endless recursion by tracking which annotated elements
 	 * have already been <em>visited</em>.
+	 * 
+	 * <p> 对searchWithGetSemantics方法执行搜索算法，通过跟踪已经访问过哪些带注释的元素来避免无限递归。
+	 * 
 	 * <p>The {@code metaDepth} parameter is explained in the
 	 * {@link Processor#process process()} method of the {@link Processor} API.
-	 * @param element the annotated element
+	 * 
+	 * <p> metaDepth参数在Processor API的process（）方法中进行了解释。
+	 * 
+	 * @param element the annotated element - 带注解的元素
+	 * 
 	 * @param annotationTypes the annotation types to find
+	 * 
+	 * <p> 要查找的注解类型
+	 * 
 	 * @param annotationName the fully qualified class name of the annotation
 	 * type to find (as an alternative to {@code annotationType})
+	 * 
+	 * <p> 要查找的注释类型的完全限定类名（作为另一个annotationType）
+	 * 
 	 * @param containerType the type of the container that holds repeatable
 	 * annotations, or {@code null} if the annotation is not repeatable
+	 * 
+	 * <p> 包含可重复注释的容器的类型，如果注释不可重复，则为null
+	 * 
 	 * @param processor the processor to delegate to
+	 * 
+	 * <p> 要委托的处理器
+	 * 
 	 * @param visited the set of annotated elements that have already been visited
-	 * @param metaDepth the meta-depth of the annotation
+	 * 
+	 * <p> 已经访问过的带注解的set集合
+	 * 
+	 * @param metaDepth the meta-depth of the annotation - 注释的元深度
+	 * 
 	 * @return the result of the processor (potentially {@code null})
+	 * 
+	 * <p> 处理器的结果（可能为null）
 	 */
 	@Nullable
 	private static <T> T searchWithGetSemantics(AnnotatedElement element,
@@ -944,23 +1021,53 @@ public abstract class AnnotatedElementUtils {
 	/**
 	 * This method is invoked by {@link #searchWithGetSemantics} to perform
 	 * the actual search within the supplied list of annotations.
+	 * 
+	 * <p> 通过searchWithGetSemantics调用此方法在提供的注释列表中执行实际搜索。
+	 * 
 	 * <p>This method should be invoked first with locally declared annotations
 	 * and then subsequently with inherited annotations, thereby allowing
 	 * local annotations to take precedence over inherited annotations.
+	 * 
+	 * <p> 应首先使用本地声明的注释调用此方法，然后使用继承的注释调用此方法，从而允许本地注释优先于继承的注释。
+	 * 
 	 * <p>The {@code metaDepth} parameter is explained in the
 	 * {@link Processor#process process()} method of the {@link Processor} API.
+	 * 
+	 * <p> metaDepth参数在Processor API的process（）方法中进行了解释。
+	 * 
 	 * @param element the element that is annotated with the supplied
 	 * annotations, used for contextual logging; may be {@code null} if unknown
-	 * @param annotations the annotations to search in
+	 * 
+	 * <p> 使用提供的注释让元素带上这个注解，用于上下文日志记录; 如果未知，可能为null
+	 * 
+	 * @param annotations the annotations to search in - 要搜索的注释
+	 * 
 	 * @param annotationTypes the annotation types to find
+	 * 
+	 * <p> 要查找的注释类型
+	 * 
 	 * @param annotationName the fully qualified class name of the annotation
 	 * type to find (as an alternative to {@code annotationType})
+	 * 
+	 * <p> 要查找的注释类型的完全限定类名（作为另一个annotationType）
+	 * 
 	 * @param containerType the type of the container that holds repeatable
 	 * annotations, or {@code null} if the annotation is not repeatable
-	 * @param processor the processor to delegate to
+	 * 
+	 * <p> 包含可重复注释的容器的类型，如果注释不可重复，则为null
+	 * 
+	 * @param processor the processor to delegate to - 要委托的 处理器
+	 * 
 	 * @param visited the set of annotated elements that have already been visited
-	 * @param metaDepth the meta-depth of the annotation
+	 * 
+	 * <p> 已经访问过的带注解的set集合
+	 * 
+	 * @param metaDepth the meta-depth of the annotation - 注释的元深度
+	 * 
 	 * @return the result of the processor (potentially {@code null})
+	 * 
+	 * <p> <p> 处理器的结果（可能为null）
+	 * 
 	 * @since 4.2
 	 */
 	@Nullable

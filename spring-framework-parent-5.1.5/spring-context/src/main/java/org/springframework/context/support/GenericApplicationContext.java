@@ -45,6 +45,10 @@ import org.springframework.util.Assert;
  * instance and does not assume a specific bean definition format. Implements
  * the {@link org.springframework.beans.factory.support.BeanDefinitionRegistry}
  * interface in order to allow for applying any bean definition readers to it.
+ * 
+ * <p> 通用ApplicationContext实现，它包含单个内部
+ * org.springframework.beans.factory.support.DefaultListableBeanFactory实例，并且不假定特定的bean定义格式。
+ *  实现org.springframework.beans.factory.support.BeanDefinitionRegistry接口，以允许将任何bean定义读取器应用于它。
  *
  * <p>Typical usage is to register a variety of bean definitions via the
  * {@link org.springframework.beans.factory.support.BeanDefinitionRegistry}
@@ -53,13 +57,22 @@ import org.springframework.util.Assert;
  * {@link org.springframework.context.ApplicationContextAware}, auto-detecting
  * {@link org.springframework.beans.factory.config.BeanFactoryPostProcessor BeanFactoryPostProcessors},
  * etc).
+ * 
+ * <p> 典型用法是通过org.springframework.beans.factory.support.BeanDefinitionRegistry接口注册各种bean定义，
+ * 然后调用refresh（）用应用程序上下文语义初始化这些bean（主要处理org.springframework.context.ApplicationContextAware，
+ * 自动检测BeanFactoryPostProcessors等）。
  *
  * <p>In contrast to other ApplicationContext implementations that create a new
  * internal BeanFactory instance for each refresh, the internal BeanFactory of
  * this context is available right from the start, to be able to register bean
  * definitions on it. {@link #refresh()} may only be called once.
+ * 
+ * <p> 与为每次刷新创建新的内部BeanFactory实例的其他ApplicationContext实现相比，
+ * 此上下文的内部BeanFactory从一开始就可用，以便能够在其上注册bean定义。 refresh（）只能调用一次。
  *
  * <p>Usage example:
+ * 
+ * <p> 用法示例
  *
  * <pre class="code">
  * GenericApplicationContext ctx = new GenericApplicationContext();
@@ -78,10 +91,16 @@ import org.springframework.util.Assert;
  * resource locations for XML bean definitions, rather than mixing arbitrary bean
  * definition formats. The equivalent in a web environment is
  * {@link org.springframework.web.context.support.XmlWebApplicationContext}.
+ * 
+ * <p> 对于XML bean定义的典型情况，只需使用ClassPathXmlApplicationContext或FileSystemXmlApplicationContext，
+ * 它们更容易设置 - 但不太灵活，除非您可以只使用XML bean定义的标准资源位置，而不是混合任意bean定义格式。 
+ * Web环境中的等效项是org.springframework.web.context.support.XmlWebApplicationContext。
  *
  * <p>For custom application context implementations that are supposed to read
  * special bean definition formats in a refreshable manner, consider deriving
  * from the {@link AbstractRefreshableApplicationContext} base class.
+ * 
+ * <p> 对于以可刷新的方式读取特殊bean定义格式的自定义应用程序上下文实现，请考虑从AbstractRefreshableApplicationContext基类派生。
  *
  * @author Juergen Hoeller
  * @author Chris Beams
@@ -105,6 +124,8 @@ public class GenericApplicationContext extends AbstractApplicationContext implem
 
 	/**
 	 * Create a new GenericApplicationContext.
+	 * 
+	 * <p> 创建一个新的 GenericApplicationContext
 	 * @see #registerBeanDefinition
 	 * @see #refresh
 	 */
@@ -287,6 +308,8 @@ public class GenericApplicationContext extends AbstractApplicationContext implem
 	/**
 	 * Return the single internal BeanFactory held by this context
 	 * (as ConfigurableListableBeanFactory).
+	 * 
+	 * <p> 返回这个上下文(ConfigurableListableBeanFactory)持有的单一内部 BeanFactory
 	 */
 	@Override
 	public final ConfigurableListableBeanFactory getBeanFactory() {
@@ -296,10 +319,18 @@ public class GenericApplicationContext extends AbstractApplicationContext implem
 	/**
 	 * Return the underlying bean factory of this context,
 	 * available for registering bean definitions.
+	 * 
+	 * <p> 返回此上下文的基础的bean工厂，可用于注册bean定义。
+	 * 
 	 * <p><b>NOTE:</b> You need to call {@link #refresh()} to initialize the
 	 * bean factory and its contained beans with application context semantics
-	 * (autodetecting BeanFactoryPostProcessors, etc).
+	 * (auto detecting BeanFactoryPostProcessors, etc).
+	 * 
+	 * <p> 注意：您需要调用refresh（）来初始化bean工厂及其包含的bean以及应用程序上下文语义（自动检测BeanFactoryPostProcessors等）。
+	 * 
 	 * @return the internal bean factory (as DefaultListableBeanFactory)
+	 * 
+	 * <p> 返回内部bean工厂(作为 DefaultListableBeanFactory)
 	 */
 	public final DefaultListableBeanFactory getDefaultListableBeanFactory() {
 		return this.beanFactory;

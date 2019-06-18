@@ -40,6 +40,8 @@ import org.springframework.stereotype.Component;
 
 /**
  * Utilities for identifying {@link Configuration} classes.
+ * 
+ * <p> 为标识{@link Configuration}类的使用工具类
  *
  * @author Chris Beams
  * @author Juergen Hoeller
@@ -74,9 +76,18 @@ abstract class ConfigurationClassUtils {
 	 * Check whether the given bean definition is a candidate for a configuration class
 	 * (or a nested component class declared within a configuration/component class,
 	 * to be auto-registered as well), and mark it accordingly.
-	 * @param beanDef the bean definition to check
+	 * 
+	 * <p> 检查给定的bean定义是否是配置类的候选者（或者在配置/组件类中声明的嵌套组件类，也要自动注册），并相应地标记它。
+	 * 
+	 * @param beanDef the bean definition to check - 要检测的bean定义
+	 * 
 	 * @param metadataReaderFactory the current factory in use by the caller
+	 * 
+	 * <p> 由调用者使用当前工厂
+	 * 
 	 * @return whether the candidate qualifies as (any kind of) configuration class
+	 * 
+	 * <p> 候选人是否有资格成为（任何类型）配置类
 	 */
 	public static boolean checkConfigurationClassCandidate(
 			BeanDefinition beanDef, MetadataReaderFactory metadataReaderFactory) {
@@ -145,9 +156,17 @@ abstract class ConfigurationClassUtils {
 	/**
 	 * Check the given metadata for a full configuration class candidate
 	 * (i.e. a class annotated with {@code @Configuration}).
+	 * 
+	 * <p> 检查给定的元数据为一个完整的配置类候选者（即使用@Configuration注释的类）。
+	 * 
 	 * @param metadata the metadata of the annotated class
+	 * 
+	 * <p> 注解类的元数据
+	 * 
 	 * @return {@code true} if the given class is to be processed as a full
 	 * configuration class, including cross-method call interception
+	 * 
+	 * <p> 如果要将给定类作为完整配置类处理（包括跨方法调用拦截），则为true
 	 */
 	public static boolean isFullConfigurationCandidate(AnnotationMetadata metadata) {
 		return metadata.isAnnotated(Configuration.class.getName());
@@ -189,6 +208,8 @@ abstract class ConfigurationClassUtils {
 	/**
 	 * Determine whether the given bean definition indicates a full {@code @Configuration}
 	 * class, through checking {@link #checkConfigurationClassCandidate}'s metadata marker.
+	 * 
+	 * <p> 通过检查checkConfigurationClassCandidate的元数据标记，确定给定的bean定义是否指示完整的@Configuration类。
 	 */
 	public static boolean isFullConfigurationClass(BeanDefinition beanDef) {
 		return CONFIGURATION_CLASS_FULL.equals(beanDef.getAttribute(CONFIGURATION_CLASS_ATTRIBUTE));
@@ -197,6 +218,8 @@ abstract class ConfigurationClassUtils {
 	/**
 	 * Determine whether the given bean definition indicates a lite {@code @Configuration}
 	 * class, through checking {@link #checkConfigurationClassCandidate}'s metadata marker.
+	 * 
+	 * <p> 通过检查checkConfigurationClassCandidate的元数据标记，确定给定的bean定义是否表示lite @Configuration类。
 	 */
 	public static boolean isLiteConfigurationClass(BeanDefinition beanDef) {
 		return CONFIGURATION_CLASS_LITE.equals(beanDef.getAttribute(CONFIGURATION_CLASS_ATTRIBUTE));

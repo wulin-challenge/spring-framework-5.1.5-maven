@@ -87,6 +87,9 @@ import org.springframework.util.ReflectionUtils;
  * interface. Doesn't mandate the type of storage used for configuration; simply
  * implements common context functionality. Uses the Template Method design pattern,
  * requiring concrete subclasses to implement abstract methods.
+ * 
+ * <p> {@link org.springframework.context.ApplicationContext}接口额抽象实现. 没有要求用于配置存储类型,
+ * 简单地实现了公共上下文功能,使用模板方法设计模式,需要具体子类实现抽象方法
  *
  * <p>In contrast to a plain BeanFactory, an ApplicationContext is supposed
  * to detect special beans defined in its internal bean factory:
@@ -95,6 +98,9 @@ import org.springframework.util.ReflectionUtils;
  * {@link org.springframework.beans.factory.config.BeanPostProcessor BeanPostProcessors},
  * and {@link org.springframework.context.ApplicationListener ApplicationListeners}
  * which are defined as beans in the context.
+ * 
+ * <p> 与普通的BeanFactory相比,在ApplicationContext的内部的bean工厂中,ApplicationContext应该检测指定的Bean 定义,
+ * 因此,在上下文中此类自动注册 BeanFactoryPostProcessors,BeanPostProcessors和ApplicationListeners 为bean定义.
  *
  * <p>A {@link org.springframework.context.MessageSource} may also be supplied
  * as a bean in the context, with the name "messageSource"; otherwise, message
@@ -103,6 +109,12 @@ import org.springframework.util.ReflectionUtils;
  * of type {@link org.springframework.context.event.ApplicationEventMulticaster}
  * in the context; otherwise, a default multicaster of type
  * {@link org.springframework.context.event.SimpleApplicationEventMulticaster} will be used.
+ * 
+ * <p> 在这个上下文中 MessageSource 也可以作为一个Bean被提供,bean的名称是 "messageSource",否则 消息解析被委托给父亲上下文,
+ * 此外,对于应用程序事件的一个多播器可以作为 {@link org.springframework.context.event.ApplicationEventMulticaster}
+ * 类型的bean被提供,bean的名称是 "applicationEventMulticaster",否则,
+ * 一个{@link org.springframework.context.event.SimpleApplicationEventMulticaster}类型默认多播器将使用
+ * 
  *
  * <p>Implements resource loading by extending
  * {@link org.springframework.core.io.DefaultResourceLoader}.
@@ -110,6 +122,10 @@ import org.springframework.util.ReflectionUtils;
  * (supporting full class path resource names that include the package path,
  * e.g. "mypackage/myresource.dat"), unless the {@link #getResourceByPath}
  * method is overridden in a subclass.
+ * 
+ * <p> 通过扩展org.springframework.core.io.DefaultResourceLoader实现资源加载。 因此，
+ * 将非URL资源路径视为类路径资源（支持包含包路径的完整类路径资源名称，例如“mypackage / myresource.dat”），
+ * 除非在子类中重写getResourceByPath方法。
  *
  * @author Rod Johnson
  * @author Juergen Hoeller
@@ -176,6 +192,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 	private ConfigurableEnvironment environment;
 
 	/** BeanFactoryPostProcessors to apply on refresh. */
+	/** BeanFactoryPostProcessors应用于刷新 */
 	private final List<BeanFactoryPostProcessor> beanFactoryPostProcessors = new ArrayList<>();
 
 	/** System time in milliseconds when this context started. */
@@ -285,6 +302,8 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 	/**
 	 * Return the parent context, or {@code null} if there is no parent
 	 * (that is, this context is the root of the context hierarchy).
+	 * 
+	 * <p> 返回父上下文，如果没有父上下文，则返回null（即，此上下文是上下文层次结构的根）。
 	 */
 	@Override
 	@Nullable
@@ -294,10 +313,17 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 
 	/**
 	 * Set the {@code Environment} for this application context.
+	 * 
+	 * <p> 为这个应用程序设置{@code Environment}
+	 * 
 	 * <p>Default value is determined by {@link #createEnvironment()}. Replacing the
 	 * default with this method is one option but configuration through {@link
 	 * #getEnvironment()} should also be considered. In either case, such modifications
 	 * should be performed <em>before</em> {@link #refresh()}.
+	 * 
+	 * <p> 通过{@link #createEnvironment()}方法确定默认值,使用这个方法替换默认值是一个选项,但同样应该考虑使用
+	 * {@link #getEnvironment()} 方法进行配置,在任何一种情况下,在 {@link #refresh()}之前这些修改应该执行
+	 * 
 	 * @see org.springframework.context.support.AbstractApplicationContext#createEnvironment
 	 */
 	@Override
@@ -308,8 +334,13 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 	/**
 	 * Return the {@code Environment} for this application context in configurable
 	 * form, allowing for further customization.
+	 * 
+	 * <p> 以可配置的形式返回此应用程序上下文的环境，以便进一步自定义。
+	 * 
 	 * <p>If none specified, a default environment will be initialized via
 	 * {@link #createEnvironment()}.
+	 * 
+	 * <p> 如果未指定，则将通过createEnvironment（）初始化默认环境。
 	 */
 	@Override
 	public ConfigurableEnvironment getEnvironment() {
@@ -1386,13 +1417,25 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 	/**
 	 * Subclasses must return their internal bean factory here. They should implement the
 	 * lookup efficiently, so that it can be called repeatedly without a performance penalty.
+	 * 
+	 * <p> 子类必须在此处返回其内部bean工厂。 它们应该有效地实现查找，以便在没有性能损失的情况下可以重复调用它。
+	 * 
 	 * <p>Note: Subclasses should check whether the context is still active before
 	 * returning the internal bean factory. The internal factory should generally be
 	 * considered unavailable once the context has been closed.
+	 * 
+	 * <p> 注意：子类应在返回内部bean工厂之前检查上下文是否仍处于活动状态。 一旦关闭上下文，通常应将内部工厂视为不可用。
+	 * 
 	 * @return this application context's internal bean factory (never {@code null})
+	 * 
+	 * <p> 应用程序上下文的内部bean工厂(永远不为null)
+	 * 
 	 * @throws IllegalStateException if the context does not hold an internal bean factory yet
 	 * (usually if {@link #refresh()} has never been called) or if the context has been
 	 * closed already
+	 * 
+	 * <p> 如果上下文没有持有内部bean工厂(通常如果{@link #refresh()}方法从没有被调用 )或者 如果这个上下文已经被关闭了,则抛出异常
+	 * 
 	 * @see #refreshBeanFactory()
 	 * @see #closeBeanFactory()
 	 */

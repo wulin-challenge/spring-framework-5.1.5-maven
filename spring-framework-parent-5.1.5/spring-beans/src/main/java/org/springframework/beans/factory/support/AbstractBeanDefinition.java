@@ -41,10 +41,16 @@ import org.springframework.util.StringUtils;
  * Base class for concrete, full-fledged {@link BeanDefinition} classes,
  * factoring out common properties of {@link GenericBeanDefinition},
  * {@link RootBeanDefinition}, and {@link ChildBeanDefinition}.
+ * 
+ * <p> 具体的，完善的BeanDefinition类的基类，分解GenericBeanDefinition，
+ * RootBeanDefinition和ChildBeanDefinition的公共属性。
  *
  * <p>The autowire constants match the ones defined in the
  * {@link org.springframework.beans.factory.config.AutowireCapableBeanFactory}
  * interface.
+ *
+ *<p> autowire常量与{@link org.springframework.beans.factory.config.AutowireCapableBeanFactory}
+ *接口中定义的常量匹配。
  *
  * @author Rod Johnson
  * @author Juergen Hoeller
@@ -397,9 +403,17 @@ public abstract class AbstractBeanDefinition extends BeanMetadataAttributeAccess
 
 	/**
 	 * Return the class of the wrapped bean, if already resolved.
+	 * 
+	 * <p> 如果已经被解析,返回这个包装bean的class
+	 * 
 	 * @return the bean class, or {@code null} if none defined
+	 * 
+	 * <p> bean的class,如果没有定义则返回null
+	 *
 	 * @throws IllegalStateException if the bean definition does not define a bean class,
 	 * or a specified bean class name has not been resolved into an actual Class
+	 * 
+	 * <p> 如果bean定义没有定义bean类，或者指定的bean类名尚未解析为实际的Class
 	 */
 	public Class<?> getBeanClass() throws IllegalStateException {
 		Object beanClassObject = this.beanClass;
@@ -415,6 +429,8 @@ public abstract class AbstractBeanDefinition extends BeanMetadataAttributeAccess
 
 	/**
 	 * Return whether this definition specifies a bean class.
+	 * 
+	 * <p> 返回此定义是否指定bean类。
 	 */
 	public boolean hasBeanClass() {
 		return (this.beanClass instanceof Class);

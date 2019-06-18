@@ -28,11 +28,16 @@ import org.springframework.lang.Nullable;
 
 /**
  * Type filter that is aware of traversing over hierarchy.
+ * 
+ * <p>遍历知道的层次结构类型过滤器
  *
  * <p>This filter is useful when matching needs to be made based on potentially the
  * whole class/interface hierarchy. The algorithm employed uses a succeed-fast
  * strategy: if at any time a match is declared, no further processing is
  * carried out.
+ * 
+ * <p> 当需要基于潜在的全部类/接口层次结构匹配时,这个过滤器是有用的,这个算法将被应用,这个算法使用的是一个成功快速策略,
+ * 如果在任何时候声明匹配，则不执行进一步处理。
  *
  * @author Ramnivas Laddad
  * @author Mark Fisher

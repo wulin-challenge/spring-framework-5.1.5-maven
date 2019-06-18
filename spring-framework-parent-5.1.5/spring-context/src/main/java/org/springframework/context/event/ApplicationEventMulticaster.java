@@ -68,9 +68,16 @@ public interface ApplicationEventMulticaster {
 
 	/**
 	 * Multicast the given application event to appropriate listeners.
+	 * 
+	 * <p> 多播给定应用程序事件到适当的监听器
+	 * 
 	 * <p>Consider using {@link #multicastEvent(ApplicationEvent, ResolvableType)}
 	 * if possible as it provides a better support for generics-based events.
-	 * @param event the event to multicast
+	 * 
+	 * <p> 如果可能，请考虑使用{@link #multicastEvent(ApplicationEvent, ResolvableType)}，
+	 * 对于基于泛型事件它提供了较好的支持
+	 * 
+	 * @param event the event to multicast - 要多播的事件
 	 */
 	void multicastEvent(ApplicationEvent event);
 

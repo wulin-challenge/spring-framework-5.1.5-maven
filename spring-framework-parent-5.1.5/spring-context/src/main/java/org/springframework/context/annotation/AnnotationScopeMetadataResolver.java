@@ -26,9 +26,13 @@ import org.springframework.util.Assert;
 /**
  * A {@link ScopeMetadataResolver} implementation that by default checks for
  * the presence of Spring's {@link Scope @Scope} annotation on the bean class.
+ * 
+ * <p> {@link ScopeMetadataResolver}实现类,在bean的class中,默认情况下检测Spring的 {@link Scope @Scope}注解是否存在
  *
  * <p>The exact type of annotation that is checked for is configurable via
  * {@link #setScopeAnnotationType(Class)}.
+ * 
+ * <p> 检查的确切注释类型,可通过setScopeAnnotationType（Class）进行配置。
  *
  * @author Mark Fisher
  * @author Juergen Hoeller
@@ -45,6 +49,9 @@ public class AnnotationScopeMetadataResolver implements ScopeMetadataResolver {
 
 	/**
 	 * Construct a new {@code AnnotationScopeMetadataResolver}.
+	 * 
+	 * <p> 构造一个新的{@code AnnotationScopeMetadataResolver}.
+	 * 
 	 * @see #AnnotationScopeMetadataResolver(ScopedProxyMode)
 	 * @see ScopedProxyMode#NO
 	 */

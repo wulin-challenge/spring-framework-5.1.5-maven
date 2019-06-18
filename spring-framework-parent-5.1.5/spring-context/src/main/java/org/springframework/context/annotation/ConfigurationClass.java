@@ -39,6 +39,8 @@ import org.springframework.util.ClassUtils;
  * Represents a user-defined {@link Configuration @Configuration} class.
  * Includes a set of {@link Bean} methods, including all such methods
  * defined in the ancestry of the class, in a 'flattened-out' manner.
+ * 
+ * <p> 表示用户定义的@Configuration类。 包含一个Bean方法集合，包括在类的祖先中定义的所有这样的方法，以'扁平化'方式。
  *
  * @author Chris Beams
  * @author Juergen Hoeller
@@ -125,8 +127,17 @@ final class ConfigurationClass {
 
 	/**
 	 * Create a new {@link ConfigurationClass} with the given name.
+	 * 
+	 * <p> 用给定的名称创建一个新的{@link ConfigurationClass}
+	 * 
 	 * @param metadata the metadata for the underlying class to represent
+	 * 
+	 * <p> 要表示的基础类元数据
+	 * 
 	 * @param beanName name of the {@code @Configuration} class bean
+	 * 
+	 * <p> {@code @Configuration}类bean的名称
+	 * 
 	 * @see ConfigurationClass#ConfigurationClass(Class, ConfigurationClass)
 	 */
 	public ConfigurationClass(AnnotationMetadata metadata, String beanName) {

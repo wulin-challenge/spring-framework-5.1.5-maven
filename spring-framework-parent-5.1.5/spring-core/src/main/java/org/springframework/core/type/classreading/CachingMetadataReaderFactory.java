@@ -30,6 +30,9 @@ import org.springframework.lang.Nullable;
  * Caching implementation of the {@link MetadataReaderFactory} interface,
  * caching a {@link MetadataReader} instance per Spring {@link Resource} handle
  * (i.e. per ".class" file).
+ * 
+ * <p> 缓存MetadataReaderFactory接口的实现，根据Spring Resource句柄（即每个“.class”文件）
+ * 缓存MetadataReader实例。
  *
  * @author Juergen Hoeller
  * @author Costin Leau
@@ -38,6 +41,7 @@ import org.springframework.lang.Nullable;
 public class CachingMetadataReaderFactory extends SimpleMetadataReaderFactory {
 
 	/** Default maximum number of entries for a local MetadataReader cache: 256. */
+	/** 本地MetadataReader缓存的默认最大条目数: 256. */
 	public static final int DEFAULT_CACHE_LIMIT = 256;
 
 	/** MetadataReader cache: either local or shared at the ResourceLoader level. */
@@ -48,6 +52,8 @@ public class CachingMetadataReaderFactory extends SimpleMetadataReaderFactory {
 	/**
 	 * Create a new CachingMetadataReaderFactory for the default class loader,
 	 * using a local resource cache.
+	 * 
+	 * <p> 为默认的class加载器创建一个新的CachingMetadataReaderFactory使用一个笨蛋资源缓存
 	 */
 	public CachingMetadataReaderFactory() {
 		super();
@@ -67,8 +73,14 @@ public class CachingMetadataReaderFactory extends SimpleMetadataReaderFactory {
 	/**
 	 * Create a new CachingMetadataReaderFactory for the given {@link ResourceLoader},
 	 * using a shared resource cache if supported or a local resource cache otherwise.
+	 * 
+	 * <p> 为给定的ResourceLoader创建新的CachingMetadataReaderFactory，如果支持则使用共享资源缓存，否则使用本地资源缓存。
+	 * 
 	 * @param resourceLoader the Spring ResourceLoader to use
 	 * (also determines the ClassLoader to use)
+	 * 
+	 * <p> 要使用的Spring ResourceLoader(同时也确定了要使用的ClassLoader)
+	 * 
 	 * @see DefaultResourceLoader#getResourceCache
 	 */
 	public CachingMetadataReaderFactory(@Nullable ResourceLoader resourceLoader) {

@@ -453,11 +453,21 @@ public abstract class Assert {
 	/**
 	 * Assert that a collection contains elements; that is, it must not be
 	 * {@code null} and must contain at least one element.
+	 * 
+	 * <p> 断言一个集合包含元素,即这个集合必须不为null且必须包含至少一个元素
+	 * 
 	 * <pre class="code">Assert.notEmpty(collection, "Collection must contain elements");</pre>
-	 * @param collection the collection to check
+	 * 
+	 * @param collection the collection to check - 要检测的集合
+	 * 
 	 * @param message the exception message to use if the assertion fails
+	 * 
+	 * <p> 断言失败要使用的异常消息
+	 * 
 	 * @throws IllegalArgumentException if the collection is {@code null} or
 	 * contains no elements
+	 * 
+	 * <p> 如果这个集合为null或者没有任何元素则抛出异常
 	 */
 	public static void notEmpty(@Nullable Collection<?> collection, String message) {
 		if (CollectionUtils.isEmpty(collection)) {
@@ -539,15 +549,31 @@ public abstract class Assert {
 
 	/**
 	 * Assert that the provided object is an instance of the provided class.
-	 * <pre class="code">Assert.instanceOf(Foo.class, foo, "Foo expected");</pre>
+	 * 
+	 * <p> 断言这被提供对象是这被提供类的实例,用法如下
+	 * 
+	 * <p> <pre class="code">Assert.instanceOf(Foo.class, foo, "Foo expected");</pre>
+	 * 
 	 * @param type the type to check against
+	 * 
+	 * <p> 要检测的类型
+	 * 
 	 * @param obj the object to check
+	 * 
+	 * <p> 要检测的对象
+	 * 
 	 * @param message a message which will be prepended to provide further context.
 	 * If it is empty or ends in ":" or ";" or "," or ".", a full exception message
 	 * will be appended. If it ends in a space, the name of the offending object's
 	 * type will be appended. In any other case, a ":" with a space and the name
 	 * of the offending object's type will be appended.
+	 * 
+	 * <p> 一条消息将被预先准备,为提供进一步的上下文,如果它是空的或以":"或";"结尾 或","或"."，将附加完整的异常消息。 
+	 * 如果它以空格结尾，则将追加违规对象类型的名称。 在任何其他情况下，将附加带有空格的":"和违规对象类型的名称。
+	 * 
 	 * @throws IllegalArgumentException if the object is not an instance of type
+	 * 
+	 * <p> 如果这个对象不是这个类型的实例,则抛出异常
 	 */
 	public static void isInstanceOf(Class<?> type, @Nullable Object obj, String message) {
 		notNull(type, "Type to check against must not be null");
@@ -627,9 +653,15 @@ public abstract class Assert {
 	/**
 	 * Assert that {@code superType.isAssignableFrom(subType)} is {@code true}.
 	 * <pre class="code">Assert.isAssignable(Number.class, myClass);</pre>
-	 * @param superType the super type to check
-	 * @param subType the sub type to check
-	 * @throws IllegalArgumentException if the classes are not assignable
+	 * 
+	 * <p> 断言superType是subType的超类或者超接口,则验证通过,否则抛出 IllegalArgumentException
+	 * 
+	 * @param superType the super type to check - 要检测的超类型
+	 * @param subType the sub type to check - 要检测的子类型
+	 * 
+	 * @throws IllegalArgumentException if the classes are not assignable - 如果这个类不是可分配的
+	 * 
+	 * <p> 意思是: 如果超类型不是子类型的超接口或者超类,这抛出 IllegalArgumentException
 	 */
 	public static void isAssignable(Class<?> superType, Class<?> subType) {
 		isAssignable(superType, subType, "");

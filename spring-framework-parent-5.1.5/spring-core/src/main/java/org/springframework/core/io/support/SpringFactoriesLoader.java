@@ -41,6 +41,8 @@ import org.springframework.util.StringUtils;
 
 /**
  * General purpose factory loading mechanism for internal use within the framework.
+ * 
+ * <p> 翻译: 框架内部使用的通用工厂加载机制
  *
  * <p>{@code SpringFactoriesLoader} {@linkplain #loadFactories loads} and instantiates
  * factories of a given type from {@value #FACTORIES_RESOURCE_LOCATION} files which
@@ -53,6 +55,15 @@ import org.springframework.util.StringUtils;
  *
  * where {@code example.MyService} is the name of the interface, and {@code MyServiceImpl1}
  * and {@code MyServiceImpl2} are two implementations.
+ * 
+ * <p> 翻译: {@code SpringFactoriesLoader}从 {@value #FACTORIES_RESOURCE_LOCATION}文件中加载并实例化一个给定类型的工厂,
+ *  在类路径下{@value #FACTORIES_RESOURCE_LOCATION}文件可以存在于当前多个jar文件中,{@code spring.factories}文件必须使
+ *  用属性(key=value)格式,这个属性的key是这个接口或者抽象类的全限定名,而value是一个逗号分隔的实现类名称列表,例如:
+ *  
+ *  <pre class="code">
+ *  example.MyService=example.MyServiceImpl1,example.MyServiceImpl2
+ *  </pre>
+ *  这里的 {@code example.MyService} 是接口的名称,而 {@code MyServiceImpl1} 和 {@code MyServiceImpl2} 是两个实现类
  *
  * @author Arjen Poutsma
  * @author Juergen Hoeller
@@ -63,7 +74,12 @@ public final class SpringFactoriesLoader {
 
 	/**
 	 * The location to look for factories.
+	 * 
+	 * <p> 要查找的工厂位置
+	 * 
 	 * <p>Can be present in multiple JAR files.
+	 * 
+	 * <p> 可以存在于多个jar文件中
 	 */
 	public static final String FACTORIES_RESOURCE_LOCATION = "META-INF/spring.factories";
 
@@ -80,13 +96,32 @@ public final class SpringFactoriesLoader {
 	/**
 	 * Load and instantiate the factory implementations of the given type from
 	 * {@value #FACTORIES_RESOURCE_LOCATION}, using the given class loader.
+	 * 
+	 * <p> 使用给定类加载器,从{@value #FACTORIES_RESOURCE_LOCATION}文件中加载并实例化给定类型的工厂实现类.
+	 * 
 	 * <p>The returned factories are sorted through {@link AnnotationAwareOrderComparator}.
+	 * 
+	 * <p> 返回通过 {@link AnnotationAwareOrderComparator}排序后的工厂
+	 * 
 	 * <p>If a custom instantiation strategy is required, use {@link #loadFactoryNames}
 	 * to obtain all registered factory names.
+	 * 
+	 * <p> 如果需要自定义一个实例化策略,使用 {@link #loadFactoryNames} 获得所有注册的工厂名称
+	 * 
+	 * 
 	 * @param factoryClass the interface or abstract class representing the factory
+	 * 
+	 * <p> 代表工厂的接口和抽象类
+	 * 
 	 * @param classLoader the ClassLoader to use for loading (can be {@code null} to use the default)
+	 * 
+	 * <p> 为加载要使用的ClassLoader(为null则使用默认的ClassLoader)
+	 * 
 	 * @throws IllegalArgumentException if any factory implementation class cannot
 	 * be loaded or if an error occurs while instantiating any factory
+	 * 
+	 * <p> 如果任何工厂实现类不能被加载或者如果当实例化任何工厂时发生一个错误 都将抛出IllegalArgumentException异常
+	 * 
 	 * @see #loadFactoryNames
 	 */
 	public static <T> List<T> loadFactories(Class<T> factoryClass, @Nullable ClassLoader classLoader) {

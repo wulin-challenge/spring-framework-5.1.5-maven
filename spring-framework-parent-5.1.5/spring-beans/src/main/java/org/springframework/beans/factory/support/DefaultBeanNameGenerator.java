@@ -21,6 +21,9 @@ import org.springframework.beans.factory.config.BeanDefinition;
 /**
  * Default implementation of the {@link BeanNameGenerator} interface, delegating to
  * {@link BeanDefinitionReaderUtils#generateBeanName(BeanDefinition, BeanDefinitionRegistry)}.
+ * 
+ * <p> {@link BeanNameGenerator}接口的默认实现类,
+ * 委托给{@link BeanDefinitionReaderUtils#generateBeanName(BeanDefinition, BeanDefinitionRegistry)}.
  *
  * @author Juergen Hoeller
  * @since 2.0.3

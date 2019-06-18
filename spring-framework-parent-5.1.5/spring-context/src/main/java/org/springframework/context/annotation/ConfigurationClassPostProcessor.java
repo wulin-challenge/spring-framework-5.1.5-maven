@@ -68,15 +68,23 @@ import static org.springframework.context.annotation.AnnotationConfigUtils.CONFI
 /**
  * {@link BeanFactoryPostProcessor} used for bootstrapping processing of
  * {@link Configuration @Configuration} classes.
+ * 
+ * <p> BeanFactoryPostProcessor用于@Configuration类的引导处理。
  *
  * <p>Registered by default when using {@code <context:annotation-config/>} or
  * {@code <context:component-scan/>}. Otherwise, may be declared manually as
  * with any other BeanFactoryPostProcessor.
+ * 
+ * <p> 使用{@code <context:annotation-config/>}或{@code <context:component-scan/>}时默认注册。
+ *  否则，可以像任何其他BeanFactoryPostProcessor一样手动声明。
  *
  * <p>This post processor is priority-ordered as it is important that any
  * {@link Bean} methods declared in {@code @Configuration} classes have
  * their corresponding bean definitions registered before any other
  * {@link BeanFactoryPostProcessor} executes.
+ * 
+ * <p> 此后处理器是按优先级排序的，因为在任何其他BeanFactoryPostProcessor执行之前，
+ * 在@Configuration类中声明的任何Bean方法都必须注册其相应的bean定义。
  *
  * @author Chris Beams
  * @author Juergen Hoeller
@@ -118,9 +126,11 @@ public class ConfigurationClassPostProcessor implements BeanDefinitionRegistryPo
 	private boolean localBeanNameGeneratorSet = false;
 
 	/* Using short class names as default bean names */
+	/* 使用短的类名称作为默认的bean名称 */
 	private BeanNameGenerator componentScanBeanNameGenerator = new AnnotationBeanNameGenerator();
 
 	/* Using fully qualified class names as default bean names */
+	/* 使用全限定类名称作为默认的bean名称 */
 	private BeanNameGenerator importBeanNameGenerator = new AnnotationBeanNameGenerator() {
 		@Override
 		protected String buildDefaultBeanName(BeanDefinition definition) {
@@ -129,8 +139,7 @@ public class ConfigurationClassPostProcessor implements BeanDefinitionRegistryPo
 			return beanClassName;
 		}
 	};
-
-
+	
 	@Override
 	public int getOrder() {
 		return Ordered.LOWEST_PRECEDENCE;  // within PriorityOrdered
@@ -215,6 +224,8 @@ public class ConfigurationClassPostProcessor implements BeanDefinitionRegistryPo
 
 	/**
 	 * Derive further bean definitions from the configuration classes in the registry.
+	 * 
+	 * <p> 在注册表中的配置类派生进一步的bean定义。
 	 */
 	@Override
 	public void postProcessBeanDefinitionRegistry(BeanDefinitionRegistry registry) {
@@ -257,6 +268,8 @@ public class ConfigurationClassPostProcessor implements BeanDefinitionRegistryPo
 	/**
 	 * Build and validate a configuration model based on the registry of
 	 * {@link Configuration} classes.
+	 * 
+	 * <p> 基于Configuration类的注册表构建和验证配置模型。
 	 */
 	public void processConfigBeanDefinitions(BeanDefinitionRegistry registry) {
 		List<BeanDefinitionHolder> configCandidates = new ArrayList<>();
@@ -305,6 +318,7 @@ public class ConfigurationClassPostProcessor implements BeanDefinitionRegistryPo
 		}
 
 		// Parse each @Configuration class
+		// 解析每个@Configuration类
 		ConfigurationClassParser parser = new ConfigurationClassParser(
 				this.metadataReaderFactory, this.problemReporter, this.environment,
 				this.resourceLoader, this.componentScanBeanNameGenerator, registry);

@@ -207,6 +207,9 @@ public abstract class AbstractEnvironment implements ConfigurableEnvironment {
 	 * Return the set of reserved default profile names. This implementation returns
 	 * {@value #RESERVED_DEFAULT_PROFILE_NAME}. Subclasses may override in order to
 	 * customize the set of reserved names.
+	 * 
+	 * <p> 返回保留的默认配置文件名称set集合。 此实现返回"default"。 为了自定义保留名称set集合子类可以覆盖。
+	 * 
 	 * @see #RESERVED_DEFAULT_PROFILE_NAME
 	 * @see #doGetDefaultProfiles()
 	 */
@@ -229,6 +232,10 @@ public abstract class AbstractEnvironment implements ConfigurableEnvironment {
 	 * {@link #setActiveProfiles} or if the current set of active profiles
 	 * is empty, check for the presence of the {@value #ACTIVE_PROFILES_PROPERTY_NAME}
 	 * property and assign its value to the set of active profiles.
+	 * 
+	 * <p> 返回通过setActiveProfiles明确地设置的激活配置文件的set集合，或者如果当前激活配置文件的set集合为空，
+	 * 请检查是否存在"spring.profiles.active"属性，并将其值分配给激活配置文件的set集合。
+	 * 
 	 * @see #getActiveProfiles()
 	 * @see #ACTIVE_PROFILES_PROPERTY_NAME
 	 */
@@ -285,6 +292,10 @@ public abstract class AbstractEnvironment implements ConfigurableEnvironment {
 	 * profiles}, then check for the presence of the
 	 * {@value #DEFAULT_PROFILES_PROPERTY_NAME} property and assign its value (if any)
 	 * to the set of default profiles.
+	 * 
+	 * <p> 返回通过setDefaultProfiles（String）显式设置的默认配置文件set集合，或者如果当前默认配置文件set集合仅包含保留的默认配置文件，
+	 * 则检查是否存在"spring.profiles.default"属性并分配其值（如果有） ）到默认配置文件集。
+	 * 
 	 * @see #AbstractEnvironment()
 	 * @see #getDefaultProfiles()
 	 * @see #DEFAULT_PROFILES_PROPERTY_NAME

@@ -330,15 +330,28 @@ public abstract class ClassUtils {
 	 * Determine whether the {@link Class} identified by the supplied name is present
 	 * and can be loaded. Will return {@code false} if either the class or
 	 * one of its dependencies is not present or cannot be loaded.
-	 * @param className the name of the class to check
+	 * 
+	 * <p> 确定通过名称标识类是否存在并且可以被加载,如果任何一个或者它所依赖的其中之一不存在或者不能被加载,则将返回false
+	 * 
+	 * @param className the name of the class to check - 要检测的类名称
+	 * 
 	 * @param classLoader the class loader to use
 	 * (may be {@code null} which indicates the default class loader)
+	 * 
+	 * <p> 要使用的类加载器(可以为null,指明默认类加载器)
+	 * 
 	 * @return whether the specified class is present (including all of its
 	 * superclasses and interfaces)
+	 * 
+	 * <p> 指定类是否存在(包括所有它依赖的超类和接口)
+	 * 
 	 * @throws IllegalStateException if the corresponding class is resolvable but
 	 * there was a readability mismatch in the inheritance hierarchy of the class
 	 * (typically a missing dependency declaration in a Jigsaw module definition
 	 * for a superclass or interface implemented by the class to be checked here)
+	 * 
+	 * <p> 如果相应的类是可解析的，但是类的继承层次结构中存在可读性不匹配
+	 * （通常是Jigsaw模块定义中缺少的依赖性声明，用于在此处检查的类所实现的超类或接口）
 	 */
 	public static boolean isPresent(String className, @Nullable ClassLoader classLoader) {
 		try {

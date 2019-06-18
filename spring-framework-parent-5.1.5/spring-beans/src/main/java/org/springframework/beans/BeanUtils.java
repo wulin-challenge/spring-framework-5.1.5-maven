@@ -53,9 +53,13 @@ import org.springframework.util.StringUtils;
 /**
  * Static convenience methods for JavaBeans: for instantiating beans,
  * checking bean property types, copying bean properties, etc.
+ * 
+ * <p> JavaBeans的静态方便方法,为实例化beans,检测bean属性类型,拷贝bean属性等等
  *
  * <p>Mainly for use within the framework, but to some degree also
  * useful for application classes.
+ * 
+ * <p>主要是为框架内部使用,但某种程度上也适用于应用程序类
  *
  * @author Rod Johnson
  * @author Juergen Hoeller
@@ -101,16 +105,29 @@ public abstract class BeanUtils {
 	 * Instantiate a class using its 'primary' constructor (for Kotlin classes,
 	 * potentially having default arguments declared) or its default constructor
 	 * (for regular Java classes, expecting a standard no-arg setup).
+	 * 
+	 * <p> 实例化一个类,使用它 '优先的' 构造器(对于kotlin类,有潜在的默认参数声明)或者它的默认构造器(对于常规的java类,期望一个标准无参设置)
+	 * 
 	 * <p>Note that this method tries to set the constructor accessible
 	 * if given a non-accessible (that is, non-public) constructor.
-	 * @param clazz the class to instantiate
-	 * @return the new instance
+	 * 
+	 * <p> 注意: 如果给定一个不可访问(即,非公共)构造器,这个方法将尝试设置可访问构造器
+	 * 
+	 * @param clazz the class to instantiate - 要实例化的类
+	 * 
+	 * @return the new instance - 新实例
+	 * 
 	 * @throws BeanInstantiationException if the bean cannot be instantiated.
 	 * The cause may notably indicate a {@link NoSuchMethodException} if no
 	 * primary/default constructor was found, a {@link NoClassDefFoundError}
 	 * or other {@link LinkageError} in case of an unresolvable class definition
 	 * (e.g. due to a missing dependency at runtime), or an exception thrown
 	 * from the constructor invocation itself.
+	 * 
+	 * <p> 如果bean无法实例化。 如果没有找到主要/默认构造函数，则可能会显示NoSuchMethodException，
+	 * 如果出现无法解析的类定义，则会出现NoClassDefFoundError或其他LinkageError（例如，由于运行时缺少依赖性），
+	 * 或者构造函数调用本身抛出异常。
+	 * 
 	 * @see Constructor#newInstance
 	 */
 	public static <T> T instantiateClass(Class<T> clazz) throws BeanInstantiationException {

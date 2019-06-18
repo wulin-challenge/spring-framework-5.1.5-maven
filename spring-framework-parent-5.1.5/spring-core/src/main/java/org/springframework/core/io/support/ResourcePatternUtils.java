@@ -23,9 +23,13 @@ import org.springframework.util.ResourceUtils;
 /**
  * Utility class for determining whether a given URL is a resource
  * location that can be loaded via a {@link ResourcePatternResolver}.
+ * 
+ * <p> 实用的工具类,该类确定一个给定的url是否是一个资源位置,这个资源位置可以通过一个{@link ResourcePatternResolver}加载
  *
  * <p>Callers will usually assume that a location is a relative path
  * if the {@link #isUrl(String)} method returns {@code false}.
+ * 
+ * <p> 如果isUrl（String）方法返回false，则调用者通常会假定某个位置是相对路径。
  *
  * @author Juergen Hoeller
  * @since 1.2.3
@@ -50,12 +54,23 @@ public abstract class ResourcePatternUtils {
 
 	/**
 	 * Return a default {@link ResourcePatternResolver} for the given {@link ResourceLoader}.
+	 * 
+	 * <p> 为给定的{@link ResourceLoader}返回一个默认的 {@link ResourcePatternResolver}
+	 * 
 	 * <p>This might be the {@code ResourceLoader} itself, if it implements the
 	 * {@code ResourcePatternResolver} extension, or a default
 	 * {@link PathMatchingResourcePatternResolver} built on the given {@code ResourceLoader}.
+	 * 
+	 * <p> 这可能是ResourceLoader本身，如果它实现ResourcePatternResolver扩展，
+	 * 或者是在给定ResourceLoader上构建的默认PathMatchingResourcePatternResolver。
+	 * 
 	 * @param resourceLoader the ResourceLoader to build a pattern resolver for
 	 * (may be {@code null} to indicate a default ResourceLoader)
-	 * @return the ResourcePatternResolver
+	 * 
+	 * <p> 为ResourceLoader构建一个模式解析器(可以是null,将指明一个默认的ResourceLoader)
+	 * 
+	 * @return the ResourcePatternResolver - 返回一个 ResourcePatternResolver
+	 * 
 	 * @see PathMatchingResourcePatternResolver
 	 */
 	public static ResourcePatternResolver getResourcePatternResolver(@Nullable ResourceLoader resourceLoader) {

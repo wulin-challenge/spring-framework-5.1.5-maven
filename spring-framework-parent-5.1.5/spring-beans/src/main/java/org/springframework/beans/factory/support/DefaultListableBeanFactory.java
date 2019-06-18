@@ -84,21 +84,34 @@ import org.springframework.util.StringUtils;
  * Spring's default implementation of the {@link ConfigurableListableBeanFactory}
  * and {@link BeanDefinitionRegistry} interfaces: a full-fledged bean factory
  * based on bean definition metadata, extensible through post-processors.
+ * 
+ * <p> Spring对configurableListableBeanFactory和BeanDefinitionRegistry接口的默认实现：
+ * 一个基于bean定义元数据的成熟bean工厂，可通过后处理器进行扩展。
  *
  * <p>Typical usage is registering all bean definitions first (possibly read
  * from a bean definition file), before accessing beans. Bean lookup by name
  * is therefore an inexpensive operation in a local bean definition table,
  * operating on pre-resolved bean definition metadata objects.
+ * 
+ * <p> 典型的用法是在访问bean之前首先注册所有bean定义（可能从bean定义文件读取）。因此，在本地bean定义表中，
+ * 按名称查找bean是一种廉价的的操作，它对预先解析的bean定义元数据对象进行操作。
  *
  * <p>Note that readers for specific bean definition formats are typically
  * implemented separately rather than as bean factory subclasses:
  * see for example {@link PropertiesBeanDefinitionReader} and
  * {@link org.springframework.beans.factory.xml.XmlBeanDefinitionReader}.
+ * 
+ * <p> 请注意，特定bean定义格式的读取器通常是单独实现的，而不是作为bean工厂子类实现的：
+ * 请参见例如{@link PropertiesBeanDefinitionReader}
+ * 和{@link org.springframework.beans.factory.xml.XmlBeanDefinitionReader}
  *
  * <p>For an alternative implementation of the
  * {@link org.springframework.beans.factory.ListableBeanFactory} interface,
  * have a look at {@link StaticListableBeanFactory}, which manages existing
  * bean instances rather than creating new ones based on bean definitions.
+ * 
+ * <p> 对于org.springframework.beans.factory.ListableBeanFactory接口的另一种实现，
+ * 请看一下StaticListableBeanFactory，它管理现有的bean实例，而不是基于bean定义创建新的bean实例。
  *
  * @author Rod Johnson
  * @author Juergen Hoeller
@@ -154,21 +167,27 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 	private AutowireCandidateResolver autowireCandidateResolver = new SimpleAutowireCandidateResolver();
 
 	/** Map from dependency type to corresponding autowired value. */
+	/** 从依赖项类型映射到相应的自动注入的值 */
 	private final Map<Class<?>, Object> resolvableDependencies = new ConcurrentHashMap<>(16);
 
 	/** Map of bean definition objects, keyed by bean name. */
+	/** bean定义对象映射,通过bean名称键入. */
 	private final Map<String, BeanDefinition> beanDefinitionMap = new ConcurrentHashMap<>(256);
 
 	/** Map of singleton and non-singleton bean names, keyed by dependency type. */
+	/** 单例和非单例bean名称的映射，由依赖类型键入。 */
 	private final Map<Class<?>, String[]> allBeanNamesByType = new ConcurrentHashMap<>(64);
 
 	/** Map of singleton-only bean names, keyed by dependency type. */
+	/** 仅仅是单例的bean名称的映射，由依赖关系类型键入。 */
 	private final Map<Class<?>, String[]> singletonBeanNamesByType = new ConcurrentHashMap<>(64);
 
 	/** List of bean definition names, in registration order. */
+	/** 按注册顺序的bean定义名称列表 */
 	private volatile List<String> beanDefinitionNames = new ArrayList<>(256);
 
 	/** List of names of manually registered singletons, in registration order. */
+	/** 按注册顺序手动注册单例bean名称列表 */
 	private volatile Set<String> manualSingletonNames = new LinkedHashSet<>(16);
 
 	/** Cached array of bean definition names in case of frozen configuration. */
@@ -223,7 +242,13 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 	 * Set whether it should be allowed to override bean definitions by registering
 	 * a different definition with the same name, automatically replacing the former.
 	 * If not, an exception will be thrown. This also applies to overriding aliases.
+	 * 
+	 * <p> 设置是否允许通过注册具有相同名称的其他定义来覆盖bean定义，自动替换前者。 如果不是，则抛出异常。 这也适用于覆盖别名。
+	 * 
 	 * <p>Default is "true".
+	 * 
+	 * <p> 默认为true
+	 * 
 	 * @see #registerBeanDefinition
 	 */
 	public void setAllowBeanDefinitionOverriding(boolean allowBeanDefinitionOverriding) {
@@ -274,6 +299,8 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 
 	/**
 	 * Return the dependency comparator for this BeanFactory (may be {@code null}.
+	 * 
+	 * <p> 为这个BeanFactory返回依赖比较器(可用为null)
 	 * @since 4.0
 	 */
 	@Nullable
@@ -285,6 +312,8 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 	 * Set a custom autowire candidate resolver for this BeanFactory to use
 	 * when deciding whether a bean definition should be considered as a
 	 * candidate for autowiring.
+	 * 
+	 * <p> 当决定一个bean定义是否应该被考虑作为一个自动装配的候选者时,为要使用的BeanFactory设置一个自定义的自动装配候选者解析器
 	 */
 	public void setAutowireCandidateResolver(final AutowireCandidateResolver autowireCandidateResolver) {
 		Assert.notNull(autowireCandidateResolver, "AutowireCandidateResolver must not be null");
@@ -304,6 +333,8 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 
 	/**
 	 * Return the autowire candidate resolver for this BeanFactory (never {@code null}).
+	 * 
+	 * <p> 为这个BeanFactory返回自动装配委托解析器(永不为null)
 	 */
 	public AutowireCandidateResolver getAutowireCandidateResolver() {
 		return this.autowireCandidateResolver;
@@ -1066,6 +1097,8 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 
 	/**
 	 * Remove any assumptions about by-type mappings.
+	 * 
+	 * <p> 删除关于按类型映射的任何假设。
 	 */
 	private void clearByTypeCache() {
 		this.allBeanNamesByType.clear();

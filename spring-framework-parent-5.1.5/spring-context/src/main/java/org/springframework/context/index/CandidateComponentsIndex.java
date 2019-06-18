@@ -29,19 +29,27 @@ import org.springframework.util.MultiValueMap;
 
 /**
  * Provide access to the candidates that are defined in {@code META-INF/spring.components}.
+ * 
+ * <p>为在{@code META-INF/spring.components}中定义的候选者提供访问
  *
  * <p>An arbitrary number of stereotypes can be registered (and queried) on the index: a
  * typical example is the fully qualified name of an annotation that flags the class for
  * a certain use case. The following call returns all the {@code @Component}
  * <b>candidate</b> types for the {@code com.example} package (and its sub-packages):
+ * 
+ * <p> 可以在索引上注册（和查询）任意数量的构造类型：典型的示例是为某个用例类标记注解的全限定名称。
+ *  以下调用返回com.example包（及其子包）的所有@Component候选类型：
+ * 
  * <pre class="code">
  * Set&lt;String&gt; candidates = index.getCandidateTypes(
  *         "com.example", "org.springframework.stereotype.Component");
  * </pre>
- *
+ * 
  * <p>The {@code type} is usually the fully qualified name of a class, though this is
  * not a rule. Similarly, the {@code stereotype} is usually the fully qualified name of
  * a target type but it can be any marker really.
+ * 
+ * <p> 类型通常是类的完全限定名称，但这不是规则。 类似地，构造型通常是目标类型的完全限定名称，但它可以是任何真正的标记。
  *
  * @author Stephane Nicoll
  * @since 5.0

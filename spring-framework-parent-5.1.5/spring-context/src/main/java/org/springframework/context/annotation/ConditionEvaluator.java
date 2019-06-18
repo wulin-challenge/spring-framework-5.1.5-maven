@@ -40,6 +40,8 @@ import org.springframework.util.MultiValueMap;
 
 /**
  * Internal class used to evaluate {@link Conditional} annotations.
+ * 
+ * <p> 用于评估{@link Conditional}注解的内部class
  *
  * @author Phillip Webb
  * @author Juergen Hoeller
@@ -52,6 +54,8 @@ class ConditionEvaluator {
 
 	/**
 	 * Create a new {@link ConditionEvaluator} instance.
+	 * 
+	 * <p> 创建一个新的 {@link ConditionEvaluator}实例
 	 */
 	public ConditionEvaluator(@Nullable BeanDefinitionRegistry registry,
 			@Nullable Environment environment, @Nullable ResourceLoader resourceLoader) {
@@ -128,6 +132,8 @@ class ConditionEvaluator {
 
 	/**
 	 * Implementation of a {@link ConditionContext}.
+	 * 
+	 * <p> {@link ConditionContext}的实现类
 	 */
 	private static class ConditionContextImpl implements ConditionContext {
 

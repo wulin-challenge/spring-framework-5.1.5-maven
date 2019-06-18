@@ -91,6 +91,9 @@ public interface ConfigurableBeanFactory extends HierarchicalBeanFactory, Single
 	/**
 	 * Return this factory's class loader for loading bean classes
 	 * (only {@code null} if even the system ClassLoader isn't accessible).
+	 * 
+	 * <p> 为正在加载的bean class返回这个工厂的类加载器(如何系统 ClassLoader不可访问,则只能返回null)
+	 * 
 	 * @see org.springframework.util.ClassUtils#forName(String, ClassLoader)
 	 */
 	@Nullable
@@ -149,6 +152,8 @@ public interface ConfigurableBeanFactory extends HierarchicalBeanFactory, Single
 	/**
 	 * Specify a Spring 3.0 ConversionService to use for converting
 	 * property values, as an alternative to JavaBeans PropertyEditors.
+	 * 
+	 * <p> 指定用于转换属性值的Spring 3.0 ConversionService，作为JavaBeans PropertyEditors的替代方法。
 	 * @since 3.0
 	 */
 	void setConversionService(@Nullable ConversionService conversionService);

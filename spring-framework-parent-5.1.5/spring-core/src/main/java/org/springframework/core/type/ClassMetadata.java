@@ -21,6 +21,8 @@ import org.springframework.lang.Nullable;
 /**
  * Interface that defines abstract metadata of a specific class,
  * in a form that does not require that class to be loaded yet.
+ * 
+ * <p> 定义特定类的抽象元数据的接口，其形式不需要加载该类。
  *
  * @author Juergen Hoeller
  * @since 2.5
@@ -32,22 +34,30 @@ public interface ClassMetadata {
 
 	/**
 	 * Return the name of the underlying class.
+	 * 
+	 * <p> 返回基础类的名称
 	 */
 	String getClassName();
 
 	/**
 	 * Return whether the underlying class represents an interface.
+	 * 
+	 * <p> 返回基础类是否代表一个接口
 	 */
 	boolean isInterface();
 
 	/**
 	 * Return whether the underlying class represents an annotation.
+	 * 
+	 * <p> 返回基础类是否代表一个注解
 	 * @since 4.1
 	 */
 	boolean isAnnotation();
 
 	/**
 	 * Return whether the underlying class is marked as abstract.
+	 * 
+	 * <p> 返回基础类型是否被标记为抽象的
 	 */
 	boolean isAbstract();
 

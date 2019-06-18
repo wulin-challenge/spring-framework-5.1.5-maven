@@ -25,9 +25,13 @@ import org.springframework.lang.Nullable;
 /**
  * Simple {@link Resource} implementation that holds a resource description
  * but does not point to an actually readable resource.
+ * 
+ * <p> 简单资源实现，它包含资源描述但不指向实际可读的资源。
  *
  * <p>To be used as placeholder if a {@code Resource} argument is
  * expected by an API but not necessarily used for actual reading.
+ * 
+ * <p> 如果API期望Resource参数但不一定用于实际读取，则用作占位符。
  *
  * @author Juergen Hoeller
  * @since 1.2.6
@@ -39,7 +43,9 @@ public class DescriptiveResource extends AbstractResource {
 
 	/**
 	 * Create a new DescriptiveResource.
-	 * @param description the resource description
+	 * 
+	 * <p> 创建一个新的 DescriptiveResource
+	 * @param description the resource description - 资源描述
 	 */
 	public DescriptiveResource(@Nullable String description) {
 		this.description = (description != null ? description : "");

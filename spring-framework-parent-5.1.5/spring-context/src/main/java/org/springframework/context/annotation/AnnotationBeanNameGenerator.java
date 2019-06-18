@@ -41,14 +41,23 @@ import org.springframework.util.StringUtils;
  * {@link org.springframework.stereotype.Repository @Repository}) are
  * themselves annotated with
  * {@link org.springframework.stereotype.Component @Component}.
+ * 
+ * <p> org.springframework.beans.factory.support.BeanNameGenerator实现类，
+ * 用于使用@Component注解或使用@Component作为元注解来注释的另一个注解注释的bean类。 例如，
+ * Spring的构造型注释（例如@Repository）本身就是用@Component注释的。
  *
  * <p>Also supports Java EE 6's {@link javax.annotation.ManagedBean} and
  * JSR-330's {@link javax.inject.Named} annotations, if available. Note that
  * Spring component annotations always override such standard annotations.
+ * 
+ * <p> 还支持Java EE 6的javax.annotation.ManagedBean和JSR-330的javax.inject.Named注解（如果可用）。
+ *  请注意，Spring组件注解始终覆盖此类标准注解。
  *
  * <p>If the annotation's value doesn't indicate a bean name, an appropriate
  * name will be built based on the short name of the class (with the first
  * letter lower-cased). For example:
+ * 
+ * <p> 如果注解的值没有指示bean名称，则将根据类的短名称（第一个字母为小写）构建适当的名称。 例如：
  *
  * <pre class="code">com.xyz.FooServiceImpl -&gt; fooServiceImpl</pre>
  *

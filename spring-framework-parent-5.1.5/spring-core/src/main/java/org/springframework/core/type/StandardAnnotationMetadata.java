@@ -30,6 +30,8 @@ import org.springframework.util.MultiValueMap;
 /**
  * {@link AnnotationMetadata} implementation that uses standard reflection
  * to introspect a given {@link Class}.
+ * 
+ * <p> AnnotationMetadata实现，它使用标准反射来内省给定的Class。
  *
  * @author Juergen Hoeller
  * @author Mark Fisher
@@ -59,10 +61,20 @@ public class StandardAnnotationMetadata extends StandardClassMetadata implements
 	 * providing the option to return any nested annotations or annotation arrays in the
 	 * form of {@link org.springframework.core.annotation.AnnotationAttributes} instead
 	 * of actual {@link Annotation} instances.
-	 * @param introspectedClass the Class to introspect
+	 * 
+	 * <p> 为给定的类创建一个新的StandardAnnotationMetadata包装器，提供以
+	 * org.springframework.core.annotation.AnnotationAttributes而不是实际的Annotation实例的形式
+	 * 返回任何嵌套注解或注解数组的选项。
+	 * 
+	 * @param introspectedClass the Class to introspect - 要内省的class
+	 * 
 	 * @param nestedAnnotationsAsMap return nested annotations and annotation arrays as
 	 * {@link org.springframework.core.annotation.AnnotationAttributes} for compatibility
 	 * with ASM-based {@link AnnotationMetadata} implementations
+	 * 
+	 * <p> 将嵌套的注释和注释数组作为org.springframework.core.annotation.AnnotationAttributes返回，
+	 * 以便与基于ASM的AnnotationMetadata实现兼容
+	 * 
 	 * @since 3.1.1
 	 */
 	public StandardAnnotationMetadata(Class<?> introspectedClass, boolean nestedAnnotationsAsMap) {

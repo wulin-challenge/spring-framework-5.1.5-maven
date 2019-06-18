@@ -37,9 +37,13 @@ import org.springframework.util.Assert;
 /**
  * Abstract base class for bean definition readers which implement
  * the {@link BeanDefinitionReader} interface.
+ * 
+ * <p> 为bean定义读取器的抽象基类,它实现了{@link BeanDefinitionReader}接口
  *
  * <p>Provides common properties like the bean factory to work on
  * and the class loader to use for loading bean classes.
+ * 
+ * <p> 提供公共属性，像要处理的bean工厂和用于加载bean类的类加载器。
  *
  * @author Juergen Hoeller
  * @author Chris Beams
@@ -49,6 +53,7 @@ import org.springframework.util.Assert;
 public abstract class AbstractBeanDefinitionReader implements BeanDefinitionReader, EnvironmentCapable {
 
 	/** Logger available to subclasses. */
+	/** 子类可用的Logger */
 	protected final Log logger = LogFactory.getLog(getClass());
 
 	private final BeanDefinitionRegistry registry;
@@ -66,18 +71,37 @@ public abstract class AbstractBeanDefinitionReader implements BeanDefinitionRead
 
 	/**
 	 * Create a new AbstractBeanDefinitionReader for the given bean factory.
+	 * 
+	 * <p> 为给定bean工厂创建一个新的 AbstractBeanDefinitionReader
+	 * 
 	 * <p>If the passed-in bean factory does not only implement the BeanDefinitionRegistry
 	 * interface but also the ResourceLoader interface, it will be used as default
 	 * ResourceLoader as well. This will usually be the case for
 	 * {@link org.springframework.context.ApplicationContext} implementations.
+	 * 
+	 * <p> 如果传入的bean工厂不仅实现了BeanDefinitionRegistry接口，而且还实现了ResourceLoader接口，
+	 * 它也将作为默认的ResourceLoader。 这通常是org.springframework.context.ApplicationContext实现类的情况。
+	 * 
 	 * <p>If given a plain BeanDefinitionRegistry, the default ResourceLoader will be a
 	 * {@link org.springframework.core.io.support.PathMatchingResourcePatternResolver}.
+	 * 
+	 * <p> 如何给定一个普通的BeanDefinitionRegistry,这默认的ResourceLoader将是
+	 * {@link org.springframework.core.io.support.PathMatchingResourcePatternResolver}
+	 * 
 	 * <p>If the passed-in bean factory also implements {@link EnvironmentCapable} its
 	 * environment will be used by this reader.  Otherwise, the reader will initialize and
 	 * use a {@link StandardEnvironment}. All ApplicationContext implementations are
 	 * EnvironmentCapable, while normal BeanFactory implementations are not.
+	 * 
+	 * <p> 如果传入的bean工厂也实现了EnvironmentCapable，则此读取器将使用其环境。 否则，
+	 * 阅读器将初始化并使用StandardEnvironment。 所有ApplicationContext实现都是EnvironmentCapable，
+	 * 而普通的BeanFactory实现则不是。
+	 * 
 	 * @param registry the BeanFactory to load bean definitions into,
 	 * in the form of a BeanDefinitionRegistry
+	 * 
+	 * <p> 要加载bean定义到BeanFactory的注册表,以一个BeanDefinitionRegistry的形式
+	 * 
 	 * @see #setResourceLoader
 	 * @see #setEnvironment
 	 */
@@ -86,6 +110,7 @@ public abstract class AbstractBeanDefinitionReader implements BeanDefinitionRead
 		this.registry = registry;
 
 		// Determine ResourceLoader to use.
+		//确定要使用的ResourceLoader
 		if (this.registry instanceof ResourceLoader) {
 			this.resourceLoader = (ResourceLoader) this.registry;
 		}
@@ -94,6 +119,7 @@ public abstract class AbstractBeanDefinitionReader implements BeanDefinitionRead
 		}
 
 		// Inherit Environment if possible
+		//如果可能,则集成环境
 		if (this.registry instanceof EnvironmentCapable) {
 			this.environment = ((EnvironmentCapable) this.registry).getEnvironment();
 		}

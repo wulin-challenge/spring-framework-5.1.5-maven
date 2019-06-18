@@ -88,23 +88,37 @@ import org.springframework.util.StringUtils;
  * with the full capabilities specified by the {@link RootBeanDefinition} class.
  * Implements the {@link org.springframework.beans.factory.config.AutowireCapableBeanFactory}
  * interface in addition to AbstractBeanFactory's {@link #createBean} method.
+ * 
+ * <p> 抽象 bean工厂的超类，它实现了默认的bean创建，通过{@link RootBeanDefinition}类来指定全部功能。 
+ * 除了AbstractBeanFactory的createBean方法之外，
+ * 还实现了{@link org.springframework.beans.factory.config.AutowireCapableBeanFactory}接口。
  *
  * <p>Provides bean creation (with constructor resolution), property population,
  * wiring (including autowiring), and initialization. Handles runtime bean
  * references, resolves managed collections, calls initialization methods, etc.
  * Supports autowiring constructors, properties by name, and properties by type.
+ * 
+ * <p> 提供bean创建（用构造函数解析），属性填充，装配（包括自动装配）和初始化。
+ *  处理运行时bean引用，解析托管集合，调用初始化方法等。支持构造函数，按名称的属性和按类型的属性进行自动装配。
  *
  * <p>The main template method to be implemented by subclasses is
  * {@link #resolveDependency(DependencyDescriptor, String, Set, TypeConverter)},
  * used for autowiring by type. In case of a factory which is capable of searching
  * its bean definitions, matching beans will typically be implemented through such
  * a search. For other factory styles, simplified matching algorithms can be implemented.
+ * 
+ * <p> 子类实现的主要模板方法是{@link #resolveDependency(DependencyDescriptor, String, Set, TypeConverter)},
+ * 用于按类型自动装配.若在一个工厂具有搜索它的bean定义功能的情况下,匹配bean通常将通过这种搜索来实现。 对于其他工厂样式，可以实现简化的匹配算法。
  *
  * <p>Note that this class does <i>not</i> assume or implement bean definition
  * registry capabilities. See {@link DefaultListableBeanFactory} for an implementation
  * of the {@link org.springframework.beans.factory.ListableBeanFactory} and
  * {@link BeanDefinitionRegistry} interfaces, which represent the API and SPI
  * view of such a factory, respectively.
+ * 
+ * <p> 请注意，此类不承担或实现bean定义注册表功能。 
+ * 有关org.springframework.beans.factory.ListableBeanFactory和BeanDefinitionRegistry接口的实现，
+ * 请参阅DefaultListableBeanFactory，它们分别代表此类工厂的API和SPI视图。
  *
  * @author Rod Johnson
  * @author Juergen Hoeller
@@ -122,9 +136,11 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 		implements AutowireCapableBeanFactory {
 
 	/** Strategy for creating bean instances. */
+	/** 创建bean实例的策略 */
 	private InstantiationStrategy instantiationStrategy = new CglibSubclassingInstantiationStrategy();
 
 	/** Resolver strategy for method parameter names. */
+	/** 方法参数名称解析策略 */
 	@Nullable
 	private ParameterNameDiscoverer parameterNameDiscoverer = new DefaultParameterNameDiscoverer();
 

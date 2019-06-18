@@ -44,6 +44,9 @@ import org.springframework.util.ClassUtils;
  * {@link org.springframework.beans.factory.config.BeanFactoryPostProcessor}
  * definitions for annotation-based configuration. Also registers a common
  * {@link org.springframework.beans.factory.support.AutowireCandidateResolver}.
+ * 
+ * <p> 实用的工具类,允许为基于注解的配置,为方便的注册公共的BeanPostProcessor和BeanFactoryPostProcessor
+ * 的bean定义,同时注册一个公共的AutowireCandidateResolver
  *
  * @author Mark Fisher
  * @author Juergen Hoeller
@@ -61,6 +64,8 @@ public abstract class AnnotationConfigUtils {
 
 	/**
 	 * The bean name of the internally managed Configuration annotation processor.
+	 * 
+	 * <p> 内部管理的配置注解处理器的bean名称。
 	 */
 	public static final String CONFIGURATION_ANNOTATION_PROCESSOR_BEAN_NAME =
 			"org.springframework.context.annotation.internalConfigurationAnnotationProcessor";
@@ -131,7 +136,9 @@ public abstract class AnnotationConfigUtils {
 
 	/**
 	 * Register all relevant annotation post processors in the given registry.
-	 * @param registry the registry to operate on
+	 * 
+	 * <p> 在给定的注册表中注册所有相关的注解后处理器
+	 * @param registry the registry to operate on - 要操作的注册表
 	 */
 	public static void registerAnnotationConfigProcessors(BeanDefinitionRegistry registry) {
 		registerAnnotationConfigProcessors(registry, null);
@@ -139,11 +146,20 @@ public abstract class AnnotationConfigUtils {
 
 	/**
 	 * Register all relevant annotation post processors in the given registry.
-	 * @param registry the registry to operate on
+	 * 
+	 * <p> 在给定的注册表中注册所有相关的注解后处理器
+	 * 
+	 * @param registry the registry to operate on - 要操作的注册表
+	 * 
 	 * @param source the configuration source element (already extracted)
 	 * that this registration was triggered from. May be {@code null}.
+	 * 
+	 * <p> 从配置源元素(已经被提取)中这个配置被触发,可以为null
+	 * 
 	 * @return a Set of BeanDefinitionHolders, containing all bean definitions
 	 * that have actually been registered by this call
+	 * 
+	 * <p> 通过这个调用,注册实际包含的所有bean定义,返回一个BeanDefinitionHolders集合
 	 */
 	public static Set<BeanDefinitionHolder> registerAnnotationConfigProcessors(
 			BeanDefinitionRegistry registry, @Nullable Object source) {
@@ -160,6 +176,7 @@ public abstract class AnnotationConfigUtils {
 
 		Set<BeanDefinitionHolder> beanDefs = new LinkedHashSet<>(8);
 
+		//注解@Configuration之所以可以注册bean定义就是来自于次
 		if (!registry.containsBeanDefinition(CONFIGURATION_ANNOTATION_PROCESSOR_BEAN_NAME)) {
 			RootBeanDefinition def = new RootBeanDefinition(ConfigurationClassPostProcessor.class);
 			def.setSource(source);
@@ -298,6 +315,7 @@ public abstract class AnnotationConfigUtils {
 		Set<AnnotationAttributes> result = new LinkedHashSet<>();
 
 		// Direct annotation present?
+		//直接的注解存在吗?
 		addAttributesIfNotNull(result, metadata.getAnnotationAttributes(annotationClassName, false));
 
 		// Container annotation present?

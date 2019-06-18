@@ -28,6 +28,8 @@ import org.springframework.util.ClassUtils;
 /**
  * Simple implementation of the {@link MetadataReaderFactory} interface,
  * creating a new ASM {@link org.springframework.asm.ClassReader} for every request.
+ * 
+ * <p> 这{@link MetadataReaderFactory}接口的简单实现类,为每个请求创建一个新的ASM {@link org.springframework.asm.ClassReader}
  *
  * @author Juergen Hoeller
  * @since 2.5
@@ -46,8 +48,13 @@ public class SimpleMetadataReaderFactory implements MetadataReaderFactory {
 
 	/**
 	 * Create a new SimpleMetadataReaderFactory for the given resource loader.
+	 * 
+	 * <p> 为给定的资源加载器创建一个新的SimpleMetadataReaderFactory
+	 * 
 	 * @param resourceLoader the Spring ResourceLoader to use
 	 * (also determines the ClassLoader to use)
+	 * 
+	 * <p> 要使用的Spring ResourceLoader(同时也确定要使用的ClassLoader)
 	 */
 	public SimpleMetadataReaderFactory(@Nullable ResourceLoader resourceLoader) {
 		this.resourceLoader = (resourceLoader != null ? resourceLoader : new DefaultResourceLoader());

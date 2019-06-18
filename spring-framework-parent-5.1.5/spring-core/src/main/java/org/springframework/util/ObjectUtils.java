@@ -101,7 +101,13 @@ public abstract class ObjectUtils {
 	/**
 	 * Determine whether the given array is empty:
 	 * i.e. {@code null} or of zero length.
+	 * 
+	 * <p> 确定给定数组是否为空的,例如: null或者零长度的数组都返回true
+	 * 
 	 * @param array the array to check
+	 * 
+	 * <p> 要检测的数组
+	 * 
 	 * @see #isEmpty(Object)
 	 */
 	public static boolean isEmpty(@Nullable Object[] array) {

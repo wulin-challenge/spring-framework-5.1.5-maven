@@ -21,6 +21,8 @@ import java.util.EventObject;
 /**
  * Class to be extended by all application events. Abstract as it
  * doesn't make sense for generic events to be published directly.
+ * 
+ * <p> 所有应用程序事件都要扩展的类。 摘要因为直接发布泛型事件没有意义。
  *
  * @author Rod Johnson
  * @author Juergen Hoeller
@@ -31,12 +33,17 @@ public abstract class ApplicationEvent extends EventObject {
 	private static final long serialVersionUID = 7099057708183571937L;
 
 	/** System time when the event happened. */
+	/** 当事件被发生时的系统时间 */
 	private final long timestamp;
 
 
 	/**
 	 * Create a new ApplicationEvent.
+	 * 
+	 * <p> 创建一个新的 ApplicationEvent
 	 * @param source the object on which the event initially occurred (never {@code null})
+	 * 
+	 * <p> 事件最初发生的对象（从不为null）
 	 */
 	public ApplicationEvent(Object source) {
 		super(source);

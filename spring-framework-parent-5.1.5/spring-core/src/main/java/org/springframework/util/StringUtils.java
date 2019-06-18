@@ -144,12 +144,24 @@ public abstract class StringUtils {
 
 	/**
 	 * Check whether the given {@code String} contains actual <em>text</em>.
+	 * 
+	 * <p> 检测给定字符串是否包含实际文本
+	 * 
 	 * <p>More specifically, this method returns {@code true} if the
 	 * {@code String} is not {@code null}, its length is greater than 0,
 	 * and it contains at least one non-whitespace character.
+	 * 
+	 * <p> 更具体地说，如果String不为null，其长度大于0，并且它至少包含一个非空白字符，则此方法返回true。
+	 * 
 	 * @param str the {@code String} to check (may be {@code null})
+	 * 
+	 * <p> 要检测的字符串(可以是null)
+	 * 
 	 * @return {@code true} if the {@code String} is not {@code null}, its
 	 * length is greater than 0, and it does not contain whitespace only
+	 * 
+	 * <p> 如果这个字符串不是null,它的长度大于0,并且它不是仅包含空白的字符,则返回true
+	 * 
 	 * @see #hasText(CharSequence)
 	 */
 	public static boolean hasText(@Nullable String str) {
@@ -876,10 +888,21 @@ public abstract class StringUtils {
 
 	/**
 	 * Copy the given {@link Collection} into a {@code String} array.
+	 * 
+	 * <p> 拷贝给定集合到一个字符串数组里
+	 * 
 	 * <p>The {@code Collection} must contain {@code String} elements only.
+	 * 
+	 * <p> 这个集合必须仅仅包含字符串元素
+	 * 
 	 * @param collection the {@code Collection} to copy
 	 * (potentially {@code null} or empty)
+	 * 
+	 * <p> 要拷贝的集合(可能为null或空)
+	 * 
 	 * @return the resulting {@code String} array
+	 * 
+	 * <p> 返回字符串数组
 	 */
 	public static String[] toStringArray(@Nullable Collection<String> collection) {
 		return (collection != null ? collection.toArray(new String[0]) : new String[0]);
@@ -1289,10 +1312,24 @@ public abstract class StringUtils {
 
 	/**
 	 * Convert a {@code String} array into a delimited {@code String} (e.g. CSV).
+	 * 
+	 * <p> 将一个字符串数组转换为一个用分隔符分隔的字符串
+	 * 
 	 * <p>Useful for {@code toString()} implementations.
+	 * 
+	 * <p> 适用于toString()方法的实现
+	 * 
 	 * @param arr the array to display (potentially {@code null} or empty)
+	 * 
+	 * <p> 要显示的数组(可能为null或者空)
+	 * 
 	 * @param delim the delimiter to use (typically a ",")
+	 * 
+	 * <p> 要使用的分隔符(典型的一个逗号)
+	 * 
 	 * @return the delimited {@code String}
+	 * 
+	 * <p> 被分隔的字符串
 	 */
 	public static String arrayToDelimitedString(@Nullable Object[] arr, String delim) {
 		if (ObjectUtils.isEmpty(arr)) {
@@ -1315,9 +1352,20 @@ public abstract class StringUtils {
 	/**
 	 * Convert a {@code String} array into a comma delimited {@code String}
 	 * (i.e., CSV).
+	 * 
+	 * <p> 将一个字符串数组转换为一个用逗号分隔的字符串
+	 * 
 	 * <p>Useful for {@code toString()} implementations.
+	 * 
+	 * <p> 适用于toString() 方法的实现
+	 * 
 	 * @param arr the array to display (potentially {@code null} or empty)
+	 * 
+	 * <p> 要显示的数组(可能为null或者空)
+	 * 
 	 * @return the delimited {@code String}
+	 * 
+	 * <p> 分隔的字符串
 	 */
 	public static String arrayToCommaDelimitedString(@Nullable Object[] arr) {
 		return arrayToDelimitedString(arr, ",");

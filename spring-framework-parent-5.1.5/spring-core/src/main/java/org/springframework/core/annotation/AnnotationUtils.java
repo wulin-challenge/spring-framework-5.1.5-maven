@@ -995,10 +995,23 @@ public abstract class AnnotationUtils {
 	 * Check the declared attributes of the given annotation, in particular covering
 	 * Google App Engine's late arrival of {@code TypeNotPresentExceptionProxy} for
 	 * {@code Class} values (instead of early {@code Class.getAnnotations() failure}.
+	 * 
+	 * <p> 检查给定注释的声明属性，特别是覆盖Google App Engine的
+	 * ClassNotPresentExceptionProxy迟到Class值（而不是早期的Class.getAnnotations（）失败)。
+	 * 
 	 * <p>This method not failing indicates that {@link #getAnnotationAttributes(Annotation)}
 	 * won't failure either (when attempted later on).
+	 * 
+	 * <p> 此方法未失败,表示getAnnotationAttributes（Annotation）也不会失败（稍后尝试）。
+	 * 
 	 * @param annotation the annotation to validate
+	 * 
+	 * <p> 要验证的注解
+	 * 
 	 * @throws IllegalStateException if a declared {@code Class} attribute could not be read
+	 * 
+	 * <p> 如果一个被声明的{@code Class}属性不能被读取,则抛出异常
+	 * 
 	 * @since 4.3.15
 	 * @see Class#getAnnotations()
 	 * @see #getAnnotationAttributes(Annotation)

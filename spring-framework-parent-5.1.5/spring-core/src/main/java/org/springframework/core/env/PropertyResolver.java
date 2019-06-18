@@ -38,7 +38,11 @@ public interface PropertyResolver {
 	/**
 	 * Return the property value associated with the given key,
 	 * or {@code null} if the key cannot be resolved.
-	 * @param key the property name to resolve
+	 * 
+	 * <p> 返回与指定key关联的属性值,如果这个可以不能被解析则返回null
+	 * 
+	 * @param key the property name to resolve - 要解析的属性名
+	 * 
 	 * @see #getProperty(String, String)
 	 * @see #getProperty(String, Class)
 	 * @see #getRequiredProperty(String)

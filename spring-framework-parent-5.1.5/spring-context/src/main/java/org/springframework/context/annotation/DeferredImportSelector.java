@@ -25,13 +25,20 @@ import org.springframework.lang.Nullable;
  * A variation of {@link ImportSelector} that runs after all {@code @Configuration} beans
  * have been processed. This type of selector can be particularly useful when the selected
  * imports are {@code @Conditional}.
+ * 
+ * <p> ImportSelector的一种变体，在处理完所有@Configuration bean之后运行。 当选择的导入是@Conditional时，这种类型的选择器特别有用。
  *
  * <p>Implementations can also extend the {@link org.springframework.core.Ordered}
  * interface or use the {@link org.springframework.core.annotation.Order} annotation to
  * indicate a precedence against other {@link DeferredImportSelector DeferredImportSelectors}.
+ * 
+ * <p> 实现还可以扩展org.springframework.core.Ordered接口或使用
+ * org.springframework.core.annotation.Order注释来指示其他DeferredImportSelectors的优先级。
  *
  * <p>Implementations may also provide an {@link #getImportGroup() import group} which
  * can provide additional sorting and filtering logic across different selectors.
+ * 
+ * <p> 实现还可以提供导入组，其可以跨不同的选择器提供额外的排序和过滤逻辑。
  *
  * @author Phillip Webb
  * @author Stephane Nicoll
@@ -41,7 +48,12 @@ public interface DeferredImportSelector extends ImportSelector {
 
 	/**
 	 * Return a specific import group.
+	 * 
+	 * <p> 返回一个指定的导入组
+	 * 
 	 * <p>The default implementations return {@code null} for no grouping required.
+	 * 
+	 * <p> 这默认实现是对于没有需要的组则返回为null
 	 * @return the import group class, or {@code null} if none
 	 * @since 5.0
 	 */
@@ -53,6 +65,8 @@ public interface DeferredImportSelector extends ImportSelector {
 
 	/**
 	 * Interface used to group results from different import selectors.
+	 * 
+	 * <p> 用于对来自不同导入选择器的结果进行分组的接口
 	 */
 	interface Group {
 

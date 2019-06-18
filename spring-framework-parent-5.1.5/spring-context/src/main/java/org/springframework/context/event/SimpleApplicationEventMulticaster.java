@@ -30,16 +30,23 @@ import org.springframework.util.ErrorHandler;
 
 /**
  * Simple implementation of the {@link ApplicationEventMulticaster} interface.
+ * 
+ * <p> {@link ApplicationEventMulticaster}的简单实现
  *
  * <p>Multicasts all events to all registered listeners, leaving it up to
  * the listeners to ignore events that they are not interested in.
  * Listeners will usually perform corresponding {@code instanceof}
  * checks on the passed-in event object.
+ * 
+ * <p> 将所有事件多播到所有已注册的侦听器，将其留给侦听器以忽略他们不感兴趣的事件。侦听器通常会对传入的事件对象执行相应的 instanceof 检查。
  *
  * <p>By default, all listeners are invoked in the calling thread.
  * This allows the danger of a rogue listener blocking the entire application,
  * but adds minimal overhead. Specify an alternative task executor to have
  * listeners executed in different threads, for example from a thread pool.
+ * 
+ * <p> 默认情况下，在调用线程中调用所有侦听器。 这允许恶意侦听器阻塞整个应用程序的危险，但增加了最小的开销。 
+ *  指定另一个任务执行者以便侦听器在不同的线程中执行，例如从线程池中执行。
  *
  * @author Rod Johnson
  * @author Juergen Hoeller
@@ -57,12 +64,16 @@ public class SimpleApplicationEventMulticaster extends AbstractApplicationEventM
 
 	/**
 	 * Create a new SimpleApplicationEventMulticaster.
+	 * 
+	 * <p> 创建一个新的SimpleApplicationEventMulticaster
 	 */
 	public SimpleApplicationEventMulticaster() {
 	}
 
 	/**
 	 * Create a new SimpleApplicationEventMulticaster for the given BeanFactory.
+	 * 
+	 * <p> 为给定的BeanFactory创建一个新的 SimpleApplicationEventMulticaster
 	 */
 	public SimpleApplicationEventMulticaster(BeanFactory beanFactory) {
 		setBeanFactory(beanFactory);
@@ -114,6 +125,8 @@ public class SimpleApplicationEventMulticaster extends AbstractApplicationEventM
 
 	/**
 	 * Return the current error handler for this multicaster.
+	 * 
+	 * <p> 为这个多播器返回当前错误处理器
 	 * @since 4.1
 	 */
 	@Nullable
@@ -147,8 +160,17 @@ public class SimpleApplicationEventMulticaster extends AbstractApplicationEventM
 
 	/**
 	 * Invoke the given listener with the given event.
+	 * 
+	 * <p> 用给定事件调用给定监听器
+	 * 
 	 * @param listener the ApplicationListener to invoke
+	 * 
+	 * <p> 要调用的 ApplecationListener
+	 * 
 	 * @param event the current event to propagate
+	 * 
+	 * <p> 要传播的当前事件
+	 * 
 	 * @since 4.1
 	 */
 	protected void invokeListener(ApplicationListener<?> listener, ApplicationEvent event) {

@@ -37,6 +37,9 @@ import org.springframework.util.Assert;
  * Convenient adapter for programmatic registration of annotated bean classes.
  * This is an alternative to {@link ClassPathBeanDefinitionScanner}, applying
  * the same resolution of annotations but for explicitly registered classes only.
+ * 
+ * <p> 实用的适配器,为注解bean 类的编程注册器,这是一个可以替代{@link ClassPathBeanDefinitionScanner},
+ * 应用相同的注解解析,但仅仅为明确的注册类
  *
  * @author Juergen Hoeller
  * @author Chris Beams
@@ -61,8 +64,16 @@ public class AnnotatedBeanDefinitionReader {
 	 * If the registry is {@link EnvironmentCapable}, e.g. is an {@code ApplicationContext},
 	 * the {@link Environment} will be inherited, otherwise a new
 	 * {@link StandardEnvironment} will be created and used.
+	 * 
+	 * <p> 为给定的注册器创建一个新的{@code AnnotatedBeanDefinitionReader}.
+	 * 如果这个注册器是{@link EnvironmentCapable},例如是一个{@code ApplicationContext},
+	 * 这个{@link Environment}将被继承,否则一个新的{@link StandardEnvironment}将被创建并使用
+	 * 
 	 * @param registry the {@code BeanFactory} to load bean definitions into,
 	 * in the form of a {@code BeanDefinitionRegistry}
+	 * 
+	 * <p> {@code BeanFactory}为加载bean定义进来用一个{@code BeanDefinitionRegistry}的形式
+	 * 
 	 * @see #AnnotatedBeanDefinitionReader(BeanDefinitionRegistry, Environment)
 	 * @see #setEnvironment(Environment)
 	 */
@@ -73,10 +84,18 @@ public class AnnotatedBeanDefinitionReader {
 	/**
 	 * Create a new {@code AnnotatedBeanDefinitionReader} for the given registry and using
 	 * the given {@link Environment}.
+	 * 
+	 * <p> 为给定注册表和使用给定环境创建一个新的{@code AnnotatedBeanDefinitionReader}
 	 * @param registry the {@code BeanFactory} to load bean definitions into,
 	 * in the form of a {@code BeanDefinitionRegistry}
+	 * 
+	 * <p> 用 一个{@code BeanDefinitionRegistry}的形式加载bean定义到{@code BeanFactory}中
+	 * 
 	 * @param environment the {@code Environment} to use when evaluating bean definition
 	 * profiles.
+	 * 
+	 * <p> 当评估bean定义配置文件时要使用的环境
+	 * 
 	 * @since 3.1
 	 */
 	public AnnotatedBeanDefinitionReader(BeanDefinitionRegistry registry, Environment environment) {
@@ -107,7 +126,12 @@ public class AnnotatedBeanDefinitionReader {
 
 	/**
 	 * Set the BeanNameGenerator to use for detected bean classes.
+	 * 
+	 * <p> 为检测beanclasses,设置要使用的BeanNameGenerator
+	 * 
 	 * <p>The default is a {@link AnnotationBeanNameGenerator}.
+	 * 
+	 * <p> 默认是一个{@link AnnotationBeanNameGenerator}.
 	 */
 	public void setBeanNameGenerator(@Nullable BeanNameGenerator beanNameGenerator) {
 		this.beanNameGenerator = (beanNameGenerator != null ? beanNameGenerator : new AnnotationBeanNameGenerator());
@@ -250,6 +274,8 @@ public class AnnotatedBeanDefinitionReader {
 	/**
 	 * Get the Environment from the given registry if possible, otherwise return a new
 	 * StandardEnvironment.
+	 * 
+	 * <p> 如何可能,从给定注册表中得到环境,否则,返回一个新的StandardEnvironment
 	 */
 	private static Environment getOrCreateEnvironment(BeanDefinitionRegistry registry) {
 		Assert.notNull(registry, "BeanDefinitionRegistry must not be null");

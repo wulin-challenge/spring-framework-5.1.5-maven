@@ -46,12 +46,17 @@ import org.springframework.util.StringUtils;
  * {@link #getSuperType() supertypes}, {@link #getInterfaces() interfaces}, and
  * {@link #getGeneric(int...) generic parameters} along with the ability to ultimately
  * {@link #resolve() resolve} to a {@link java.lang.Class}.
+ * 
+ * <p> 封装一个java Type类型,提供超类型,接口和泛型参数的访问,以及最终解析为一个Class能力
  *
  * <p>{@code ResolvableTypes} may be obtained from {@link #forField(Field) fields},
  * {@link #forMethodParameter(Method, int) method parameters},
  * {@link #forMethodReturnType(Method) method returns} or
  * {@link #forClass(Class) classes}. Most methods on this class will themselves return
  * {@link ResolvableType ResolvableTypes}, allowing easy navigation. For example:
+ * 
+ * <p> 从 属性,方法参数,方法返回值或者类可以获得ResolvableTypes,在这个类上大多数方法将他们自己返回ResolvableType,以便轻松导航,例如
+ * 
  * <pre class="code">
  * private HashMap&lt;Integer, List&lt;String&gt;&gt; myMap;
  *
@@ -182,6 +187,8 @@ public class ResolvableType implements Serializable {
 	/**
 	 * Private constructor used to create a new {@link ResolvableType} on a {@link Class} basis.
 	 * Avoids all {@code instanceof} checks in order to create a straight {@link Class} wrapper.
+	 * 
+	 * 私有构造器被用于基于一个类创建一个新的ResolvableType,为了创建一个直接类包装器避免所有 instanceof 检测
 	 * @since 4.2
 	 */
 	private ResolvableType(@Nullable Class<?> clazz) {
@@ -430,9 +437,18 @@ public class ResolvableType implements Serializable {
 	 * {@link #getSuperType() supertype} and {@link #getInterfaces() interface}
 	 * hierarchies to find a match, returning {@link #NONE} if this type does not
 	 * implement or extend the specified class.
+	 * 
+	 * <p> 返回这个类型作为指定类的ResolvableType,搜索继承的超类和接口查找一个匹配的,如果这个类型没有被实现或者被指定类继承则返回NONE
+	 * 
 	 * @param type the required type (typically narrowed)
+	 * 
+	 * <p> 需要的类型(某个父亲接口或者父亲类)
+	 * 
 	 * @return a {@link ResolvableType} representing this object as the specified
 	 * type, or {@link #NONE} if not resolvable as that type
+	 * 
+	 * <p> 表示这个对象作为指定类型的 ResolvableType,如果不能解析作为这个类型则返回NONE
+	 * 
 	 * @see #asCollection()
 	 * @see #asMap()
 	 * @see #getSuperType()
@@ -647,10 +663,23 @@ public class ResolvableType implements Serializable {
 	 * for example {@code getGeneric(1, 0)} will access the {@code String} from the
 	 * nested {@code List}. For convenience, if no indexes are specified the first
 	 * generic is returned.
+	 * 
+	 * <p> 为给定索引返回一个表示泛型参数的 ResolvableType,索引基于0开始,例如给定类型 {@code Map<Integer, List<String>>}, {@code getGeneric(0)}
+	 * 将访问{@code Integer},嵌套的泛型可以通过指定多个索引值来访问,例如 {@code getGeneric(1, 0)}将从嵌套的{@code List}中访问 {@code String},
+	 * 为了方便起见,如果没有指定索引第一个泛型参数类型将被返回
+	 * 
 	 * <p>If no generic is available at the specified indexes {@link #NONE} is returned.
+	 * 
+	 * <p> 在指定的索引中如果没有泛型可用,将返回NONE
+	 * 
 	 * @param indexes the indexes that refer to the generic parameter
 	 * (may be omitted to return the first generic)
+	 * 
+	 * <p> 索引应用泛型参数(如果返回第一个泛型参数,索引key被省略)
+	 * 
 	 * @return a {@link ResolvableType} for the specified generic, or {@link #NONE}
+	 * 
+	 * <p> 返回指定类型的泛型参数{@link ResolvableType}或者NONE
 	 * @see #hasGenerics()
 	 * @see #getGenerics()
 	 * @see #resolveGeneric(int...)
@@ -767,10 +796,20 @@ public class ResolvableType implements Serializable {
 	 * if the type cannot be resolved. This method will consider bounds of
 	 * {@link TypeVariable TypeVariables} and {@link WildcardType WildcardTypes} if
 	 * direct resolution fails; however, bounds of {@code Object.class} will be ignored.
+	 * 
+	 * <p> 将此类型解析为java.lang.Class，如果无法解析该类型，则返回null。 如果直接解析失败，
+	 * 此方法将考虑TypeVariables和WildcardTypes的边界; 但是，Object.class的边界将被忽略。
+	 * 
 	 * <p>If this method returns a non-null {@code Class} and {@link #hasGenerics()}
 	 * returns {@code false}, the given type effectively wraps a plain {@code Class},
 	 * allowing for plain {@code Class} processing if desirable.
+	 * 
+	 * <p> 如果此方法返回非null的 Class并且hasGenerics()返回false，则给定类型有效地包装普通类，如果需要，允许进行普通类处理。
+	 * 
 	 * @return the resolved {@link Class}, or {@code null} if not resolvable
+	 * 
+	 * <p> 返回解析的Class,如果不能解析则返回null
+	 * 
 	 * @see #resolve(Class)
 	 * @see #resolveGeneric(int...)
 	 * @see #resolveGenerics()
@@ -981,9 +1020,18 @@ public class ResolvableType implements Serializable {
 	 * Return a {@link ResolvableType} for the specified {@link Class},
 	 * using the full generic type information for assignability checks.
 	 * For example: {@code ResolvableType.forClass(MyArrayList.class)}.
+	 * 
+	 * <p> 为指定类返回一个ResolvableType,为可分性检测使用全泛型类型信息,例如 ResolvableType.forClass(MyArrayList.class). 
+	 * 
 	 * @param clazz the class to introspect ({@code null} is semantically
 	 * equivalent to {@code Object.class} for typical use cases here}
+	 * 
+	 * <p> 要内省的类(在这儿对于典型的使用用例就是: null语义上等同于 Object.class)
+	 * 
 	 * @return a {@link ResolvableType} for the specified class
+	 * 
+	 * <p> 被指定类的的ResolvableType
+	 * 
 	 * @see #forClass(Class, Class)
 	 * @see #forClassWithGenerics(Class, Class...)
 	 */
@@ -1084,8 +1132,12 @@ public class ResolvableType implements Serializable {
 	 * convey generic information but if it implements {@link ResolvableTypeProvider} a
 	 * more precise {@link ResolvableType} can be used than the simple one based on
 	 * the {@link #forClass(Class) Class instance}.
-	 * @param instance the instance
-	 * @return a {@link ResolvableType} for the specified instance
+	 * 
+	 * <p> 为指定实例返回一个 {@link ResolvableType},实例不能传递泛型信息,但如果它实现了{@link ResolvableTypeProvider}
+	 *  使用更精确的{@link ResolvableType}比基于Class实例更简单
+	 *  
+	 * @param instance the instance - 对象实例
+	 * @return a {@link ResolvableType} for the specified instance - 指定实例的{@link ResolvableType}
 	 * @since 4.2
 	 * @see ResolvableTypeProvider
 	 */

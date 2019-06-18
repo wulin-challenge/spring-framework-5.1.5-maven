@@ -23,8 +23,12 @@ import org.springframework.lang.Nullable;
  * Can be implemented by {@link org.springframework.beans.factory.BeanFactory}
  * implementations in order to expose their singleton management facility
  * in a uniform manner.
+ * 
+ * <p> 为共享bean实例定义注册表的接口。 可以通过org.springframework.beans.factory.BeanFactory实现类来实现，以便以统一的方式公开它们的单例管理工具。
  *
  * <p>The {@link ConfigurableBeanFactory} interface extends this interface.
+ * 
+ * <p> ConfigurableBeanFactory接口扩展了此接口。
  *
  * @author Juergen Hoeller
  * @since 2.0
@@ -37,20 +41,35 @@ public interface SingletonBeanRegistry {
 	/**
 	 * Register the given existing object as singleton in the bean registry,
 	 * under the given bean name.
+	 * 
+	 * <p> 在给定的bean名称下，在bean注册表中将给定的现有对象注册为singleton。
+	 * 
 	 * <p>The given instance is supposed to be fully initialized; the registry
 	 * will not perform any initialization callbacks (in particular, it won't
 	 * call InitializingBean's {@code afterPropertiesSet} method).
 	 * The given instance will not receive any destruction callbacks
 	 * (like DisposableBean's {@code destroy} method) either.
+	 * 
+	 * <p> 假定给定的实例已完全初始化; 注册表不会执行任何初始化回调（特别是，它不会调用InitializingBean的afterPropertiesSet方法）。
+	 *  给定的实例也不会收到任何销毁回调（如DisposableBean的destroy方法）。
+	 * 
 	 * <p>When running within a full BeanFactory: <b>Register a bean definition
 	 * instead of an existing instance if your bean is supposed to receive
 	 * initialization and/or destruction callbacks.</b>
+	 * 
+	 * <p> 在完整的BeanFactory中运行时：如果bean假设接收初始化或者 销毁回调，则注册的是一个bean定义而不是现有实例。
+	 * 
 	 * <p>Typically invoked during registry configuration, but can also be used
 	 * for runtime registration of singletons. As a consequence, a registry
 	 * implementation should synchronize singleton access; it will have to do
 	 * this anyway if it supports a BeanFactory's lazy initialization of singletons.
-	 * @param beanName the name of the bean
-	 * @param singletonObject the existing singleton object
+	 * 
+	 * <p> 通常在注册表配置期间调用，但同样可以用于在运行时单例的注册。 因此，注册表实现应该同步单例访问; 如果它支持BeanFactory对单例的懒惰初始化，它将无论如何都必须这样做。
+	 * 
+	 * @param beanName the name of the bean - bean的名称
+	 * 
+	 * @param singletonObject the existing singleton object 存在的单例对象
+	 * 
 	 * @see org.springframework.beans.factory.InitializingBean#afterPropertiesSet
 	 * @see org.springframework.beans.factory.DisposableBean#destroy
 	 * @see org.springframework.beans.factory.support.BeanDefinitionRegistry#registerBeanDefinition
@@ -59,6 +78,9 @@ public interface SingletonBeanRegistry {
 
 	/**
 	 * Return the (raw) singleton object registered under the given name.
+	 * 
+	 * <p> 返回在给定名称下注册的（原始）单例对象。
+	 * 
 	 * <p>Only checks already instantiated singletons; does not return an Object
 	 * for singleton bean definitions which have not been instantiated yet.
 	 * <p>The main purpose of this method is to access manually registered singletons

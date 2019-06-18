@@ -54,15 +54,23 @@ import org.springframework.util.xml.XmlValidationModeDetector;
  * Bean definition reader for XML bean definitions.
  * Delegates the actual XML document reading to an implementation
  * of the {@link BeanDefinitionDocumentReader} interface.
+ * 
+ * <p> 用于XML bean定义的Bean定义读取器。 将实际的XML文档读取委托给BeanDefinitionDocumentReader接口的实现。
  *
  * <p>Typically applied to a
  * {@link org.springframework.beans.factory.support.DefaultListableBeanFactory}
  * or a {@link org.springframework.context.support.GenericApplicationContext}.
+ * 
+ * <p> 通常应用于org.springframework.beans.factory.support.DefaultListableBeanFactory
+ * 或org.springframework.context.support.GenericApplicationContext。
  *
  * <p>This class loads a DOM document and applies the BeanDefinitionDocumentReader to it.
  * The document reader will register each bean definition with the given bean factory,
  * talking to the latter's implementation of the
  * {@link org.springframework.beans.factory.support.BeanDefinitionRegistry} interface.
+ * 
+ * <p> 此类加载DOM文档并将BeanDefinitionDocumentReader应用于它。 文档阅读器将使用给定的bean工厂注册每个bean定义，
+ * 并与后者的org.springframework.beans.factory.support.BeanDefinitionRegistry接口的实现进行对话。
  *
  * @author Juergen Hoeller
  * @author Rob Harrop
@@ -99,6 +107,7 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
 
 
 	/** Constants instance for this class. */
+	/** 此类的常量接口 */
 	private static final Constants constants = new Constants(XmlBeanDefinitionReader.class);
 
 	private int validationMode = VALIDATION_AUTO;
@@ -132,8 +141,13 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
 
 	/**
 	 * Create new XmlBeanDefinitionReader for the given bean factory.
+	 * 
+	 * <p> 为给定的bean工厂创建新的XmlBeanDefinitionReader
+	 * 
 	 * @param registry the BeanFactory to load bean definitions into,
 	 * in the form of a BeanDefinitionRegistry
+	 * 
+	 * <p> 加载bean定义到BeanFactory的注册表,以一个BeanDefinitionRegistry的形式
 	 */
 	public XmlBeanDefinitionReader(BeanDefinitionRegistry registry) {
 		super(registry);
@@ -142,8 +156,14 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
 
 	/**
 	 * Set whether to use XML validation. Default is {@code true}.
+	 * 
+	 * <p> 设置是否要使用xml验证,默认为true
+	 * 
 	 * <p>This method switches namespace awareness on if validation is turned off,
 	 * in order to still process schema namespaces properly in such a scenario.
+	 * 
+	 * <p> 这个方法如何关闭验证,切换命名空间感知,为了在这种情况下依然能正确地处理 schema命名空间
+	 * 
 	 * @see #setValidationMode
 	 * @see #setNamespaceAware
 	 */

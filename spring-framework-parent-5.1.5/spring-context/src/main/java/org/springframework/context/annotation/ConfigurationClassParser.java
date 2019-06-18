@@ -88,14 +88,22 @@ import org.springframework.util.StringUtils;
  * {@link ConfigurationClass} objects (parsing a single Configuration class may result in
  * any number of ConfigurationClass objects because one Configuration class may import
  * another using the {@link Import} annotation).
+ * 
+ * <p> 解析Configuration类定义，填充ConfigurationClass对象的集合（解析单个Configuration类可能会导致任意数量的
+ * ConfigurationClass对象，因为一个Configuration类可能使用{@link Import} 注解导入另一个）。
  *
  * <p>This class helps separate the concern of parsing the structure of a Configuration
  * class from the concern of registering BeanDefinition objects based on the content of
  * that model (with the exception of {@code @ComponentScan} annotations which need to be
  * registered immediately).
+ * 
+ * <p> 此类有助于将解析Configuration类结构的问题与基于该模型的内容注册BeanDefinition对象的问题分开
+ * （除了需要立即注册的@ComponentScan注释）。
  *
  * <p>This ASM-based implementation avoids reflection and eager class loading in order to
  * interoperate effectively with lazy class loading in a Spring ApplicationContext.
+ * 
+ * <p> 这种基于ASM的实现避免了反射和急切的类加载，以便与Spring ApplicationContext中的延迟类加载有效地进行互操作。
  *
  * @author Chris Beams
  * @author Juergen Hoeller
@@ -143,6 +151,8 @@ class ConfigurationClassParser {
 	/**
 	 * Create a new {@link ConfigurationClassParser} instance that will be used
 	 * to populate the set of configuration classes.
+	 * 
+	 * <p> 创建一个新的{@link ConfigurationClassParser}实例,这个实例将被用于填充配置类的set集合
 	 */
 	public ConfigurationClassParser(MetadataReaderFactory metadataReaderFactory,
 			ProblemReporter problemReporter, Environment environment, ResourceLoader resourceLoader,
@@ -237,6 +247,7 @@ class ConfigurationClassParser {
 		}
 
 		// Recursively process the configuration class and its superclass hierarchy.
+		//递归处理这个配置类和他的超类的层次结构
 		SourceClass sourceClass = asSourceClass(configClass);
 		do {
 			sourceClass = doProcessConfigurationClass(configClass, sourceClass);
@@ -250,9 +261,18 @@ class ConfigurationClassParser {
 	 * Apply processing and build a complete {@link ConfigurationClass} by reading the
 	 * annotations, members and methods from the source class. This method can be called
 	 * multiple times as relevant sources are discovered.
+	 * 
+	 * <p> 通过从源类中读取注释，成员和方法来应用处理并构建完整的ConfigurationClass。 在发现相关源时，可以多次调用此方法。
+	 * 
 	 * @param configClass the configuration class being build
-	 * @param sourceClass a source class
+	 * 
+	 * <p> 正在构建的配置类
+	 * 
+	 * @param sourceClass a source class - 一个源class
+	 * 
 	 * @return the superclass, or {@code null} if none found or previously processed
+	 * 
+	 * <p> 返回超类，如果没有找到或以前处理过，则返回null
 	 */
 	@Nullable
 	protected final SourceClass doProcessConfigurationClass(ConfigurationClass configClass, SourceClass sourceClass)
@@ -625,6 +645,8 @@ class ConfigurationClassParser {
 
 	/**
 	 * Factory method to obtain a {@link SourceClass} from a {@link ConfigurationClass}.
+	 * 
+	 * <p> 从一个{@link ConfigurationClass}中获取一个{@link SourceClass}工厂方法
 	 */
 	private SourceClass asSourceClass(ConfigurationClass configurationClass) throws IOException {
 		AnnotationMetadata metadata = configurationClass.getMetadata();
@@ -636,6 +658,8 @@ class ConfigurationClassParser {
 
 	/**
 	 * Factory method to obtain a {@link SourceClass} from a {@link Class}.
+	 * 
+	 * <p> 从一个{@link Class}中获取一个{@link SourceClass}工厂方法
 	 */
 	SourceClass asSourceClass(@Nullable Class<?> classType) throws IOException {
 		if (classType == null) {
@@ -904,6 +928,8 @@ class ConfigurationClassParser {
 	/**
 	 * Simple wrapper that allows annotated source classes to be dealt with
 	 * in a uniform manner, regardless of how they are loaded.
+	 * 
+	 * <p> 简单的包装器，允许以统一的方式处理带注释的源类，无论它们如何加载。
 	 */
 	private class SourceClass implements Ordered {
 

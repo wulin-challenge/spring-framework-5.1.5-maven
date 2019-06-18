@@ -69,10 +69,16 @@ import org.springframework.util.ClassUtils;
  * filters on an annotation/superclass that are annotated with {@link Indexed} are
  * supported: if any other include filter is specified, the index is ignored and
  * classpath scanning is used instead.
+ * 
+ * <p> 从基础包提供候选组件的组件提供者。 如果可用，则可以使用索引扫描类路径。 通过应用排除和包含过滤器来识别候选组件。 
+ * AnnotationTypeFilter，AssignableTypeFilter包括支持使用Indexed注释的注解/超类的过滤器：
+ * 如果指定了任何其他包含过滤器，则忽略索引并使用类路径扫描。
  *
  * <p>This implementation is based on Spring's
  * {@link org.springframework.core.type.classreading.MetadataReader MetadataReader}
  * facility, backed by an ASM {@link org.springframework.asm.ClassReader ClassReader}.
+ * 
+ * <p> 此实现基于Spring的MetadataReader工具，由ASM ClassReader支持。
  *
  * @author Mark Fisher
  * @author Juergen Hoeller
@@ -116,6 +122,9 @@ public class ClassPathScanningCandidateComponentProvider implements EnvironmentC
 
 	/**
 	 * Protected constructor for flexible subclass initialization.
+	 * 
+	 * <p> 受保护的构造函数，用于灵活的子类初始化。
+	 * 
 	 * @since 4.3.6
 	 */
 	protected ClassPathScanningCandidateComponentProvider() {
@@ -194,13 +203,20 @@ public class ClassPathScanningCandidateComponentProvider implements EnvironmentC
 
 	/**
 	 * Register the default filter for {@link Component @Component}.
+	 * 
+	 * <p> 为 {@link Component @Component}注册默认的过滤器
+	 * 
 	 * <p>This will implicitly register all annotations that have the
 	 * {@link Component @Component} meta-annotation including the
 	 * {@link Repository @Repository}, {@link Service @Service}, and
 	 * {@link Controller @Controller} stereotype annotations.
+	 * 
+	 * <p> 这将隐式注册所有具有@Component元注释的注释，包括@ Repository，@ Service和@Controller构造型注解。
+	 * 
 	 * <p>Also supports Java EE 6's {@link javax.annotation.ManagedBean} and
 	 * JSR-330's {@link javax.inject.Named} annotations, if available.
 	 *
+	 * <p> 还支持Java EE 6的javax.annotation.ManagedBean和JSR-330的javax.inject.Named注解（如果可用）。
 	 */
 	@SuppressWarnings("unchecked")
 	protected void registerDefaultFilters() {
@@ -227,8 +243,14 @@ public class ClassPathScanningCandidateComponentProvider implements EnvironmentC
 	/**
 	 * Set the Environment to use when resolving placeholders and evaluating
 	 * {@link Conditional @Conditional}-annotated component classes.
+	 * 
+	 * <p> 当解析占位符和评估@Conditional-annotated组件类时设置要使用的Environment。
+	 * 
 	 * <p>The default is a {@link StandardEnvironment}.
-	 * @param environment the Environment to use
+	 * 
+	 * <p> 默认是一个 {@link StandardEnvironment}
+	 * 
+	 * @param environment the Environment to use - 要使用的Environment
 	 */
 	public void setEnvironment(Environment environment) {
 		Assert.notNull(environment, "Environment must not be null");
@@ -255,8 +277,14 @@ public class ClassPathScanningCandidateComponentProvider implements EnvironmentC
 	/**
 	 * Set the {@link ResourceLoader} to use for resource locations.
 	 * This will typically be a {@link ResourcePatternResolver} implementation.
+	 * 
+	 * <p> 为资源位置设置要使用的{@link ResourceLoader},这通常将是一个{@link ResourcePatternResolver}接口的实现类
+	 * 
 	 * <p>Default is a {@code PathMatchingResourcePatternResolver}, also capable of
 	 * resource pattern resolving through the {@code ResourcePatternResolver} interface.
+	 * 
+	 * <p> 默认为PathMatchingResourcePatternResolver，也可以通过ResourcePatternResolver接口解析资源模式。
+	 * 
 	 * @see org.springframework.core.io.support.ResourcePatternResolver
 	 * @see org.springframework.core.io.support.PathMatchingResourcePatternResolver
 	 */
@@ -269,6 +297,8 @@ public class ClassPathScanningCandidateComponentProvider implements EnvironmentC
 
 	/**
 	 * Return the ResourceLoader that this component provider uses.
+	 * 
+	 * <p> 返回此组件提供者使用的ResourceLoader。
 	 */
 	public final ResourceLoader getResourceLoader() {
 		return getResourcePatternResolver();

@@ -25,9 +25,13 @@ import org.springframework.lang.Nullable;
 /**
  * Extended variant of the standard {@link ApplicationListener} interface,
  * exposing further metadata such as the supported event and source type.
+ * 
+ * <p> 标准ApplicationListener接口的扩展变体，公开了更多元数据，例如支持的事件和源类型。
  *
  * <p>As of Spring Framework 4.2, this interface supersedes the Class-based
  * {@link SmartApplicationListener} with full handling of generic event types.
+ * 
+ * <p> 从Spring Framework 4.2开始，此接口取代了基于类的SmartApplicationListener，并完全处理了通用事件类型。
  *
  * @author Stephane Nicoll
  * @since 4.2

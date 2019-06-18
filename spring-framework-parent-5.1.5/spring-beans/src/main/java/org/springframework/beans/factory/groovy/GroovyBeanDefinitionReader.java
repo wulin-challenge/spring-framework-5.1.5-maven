@@ -157,7 +157,12 @@ public class GroovyBeanDefinitionReader extends AbstractBeanDefinitionReader imp
 	/**
 	 * Create a new {@code GroovyBeanDefinitionReader} for the given
 	 * {@link BeanDefinitionRegistry}.
+	 * 
+	 * <p> 为给定的{@link BeanDefinitionRegistry}创建一个新的 {@code GroovyBeanDefinitionReader} 实例
+	 * 
 	 * @param registry the {@code BeanDefinitionRegistry} to load bean definitions into
+	 * 
+	 * <p> 加载bean定义到{@code BeanDefinitionRegistry}注册表
 	 */
 	public GroovyBeanDefinitionReader(BeanDefinitionRegistry registry) {
 		super(registry);
