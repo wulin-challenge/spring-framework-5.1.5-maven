@@ -1322,20 +1322,39 @@ public abstract class AnnotationUtils {
 
 	/**
 	 * Post-process the supplied {@link AnnotationAttributes}.
+	 * 
+	 * <p> 对提供的AnnotationAttributes进行后处理。
+	 * 
 	 * <p>Specifically, this method enforces <em>attribute alias</em> semantics
 	 * for annotation attributes that are annotated with {@link AliasFor @AliasFor}
 	 * and replaces default value placeholders with their original default values.
+	 * 
+	 * <p> 具体来说: 此方法用带有{@link AliasFor @AliasFor}注解的注解属性强制执行属性别名语义,并且用他们的原始默认值
+	 * 替换默认值占位符
+	 * 
 	 * @param annotatedElement the element that is annotated with an annotation or
 	 * annotation hierarchy from which the supplied attributes were created;
 	 * may be {@code null} if unknown
-	 * @param attributes the annotation attributes to post-process
+	 * 
+	 * <p> 用注释或注释层次结构注释的元素，从中创建提供的属性；如果未知，则可能为空。
+	 * 
+	 * @param attributes the annotation attributes to post-process - 要后处理的注释属性
+	 * 
 	 * @param classValuesAsString whether to convert Class references into Strings (for
 	 * compatibility with {@link org.springframework.core.type.AnnotationMetadata})
 	 * or to preserve them as Class references
+	 * 
+	 * <p> 是否转换Class引用为字符串(为了与{@link org.springframework.core.type.AnnotationMetadata}兼容)
+	 * 或者作为Class引用保存它
+	 * 
 	 * @param nestedAnnotationsAsMap whether to convert nested annotations into
 	 * {@link AnnotationAttributes} maps (for compatibility with
 	 * {@link org.springframework.core.type.AnnotationMetadata}) or to preserve them as
 	 * {@code Annotation} instances
+	 * 
+	 * <p> 是否转换嵌入注解为{@link AnnotationAttributes}map(为了兼容{@link org.springframework.core.type.AnnotationMetadata})
+	 * 或者作为{@code Annotation}实例保存它
+	 * 
 	 * @since 4.2
 	 * @see #retrieveAnnotationAttributes(Object, Annotation, boolean, boolean)
 	 * @see #getDefaultValue(Class, String)
@@ -1351,10 +1370,12 @@ public abstract class AnnotationUtils {
 
 		// Track which attribute values have already been replaced so that we can short
 		// circuit the search algorithms.
+		// 跟踪哪些属性值已经被替换，以便我们可以短路搜索算法。
 		Set<String> valuesAlreadyReplaced = new HashSet<>();
 
 		if (!attributes.validated) {
 			// Validate @AliasFor configuration
+			// 验证 @AliasFor 配置
 			Map<String, List<String>> aliasMap = getAttributeAliasMap(annotationType);
 			aliasMap.forEach((attributeName, aliasedAttributeNames) -> {
 				if (valuesAlreadyReplaced.contains(attributeName)) {
@@ -1711,20 +1732,43 @@ public abstract class AnnotationUtils {
 	/**
 	 * Get a map of all attribute aliases declared via {@code @AliasFor}
 	 * in the supplied annotation type.
+	 * 
+	 * <p> 通过{@code @AliasFor}在提供的注解类型中得到一个所有被声明的属性别名Map集合
+	 * 
 	 * <p>The map is keyed by attribute name with each value representing
 	 * a list of names of aliased attributes.
+	 * 
+	 * <p> 通过属性名 与 每个值表示的别名名称的list集合键入属性map
+	 * 
 	 * <p>For <em>explicit</em> alias pairs such as x and y (i.e. where x
 	 * is an {@code @AliasFor("y")} and y is an {@code @AliasFor("x")}, there
 	 * will be two entries in the map: {@code x -> (y)} and {@code y -> (x)}.
+	 * 
+	 * <p> 对于显式别名对，例如x和y（即，其中x是@AliasFor（“y”），y是@AliasFor（“x”），
+	 * map中将有两个条目：x  - >（y）和 y  - >（x）。
+	 * 
 	 * <p>For <em>implicit</em> aliases (i.e. attributes that are declared
 	 * as attribute overrides for the same attribute in the same meta-annotation),
 	 * there will be n entries in the map. For example, if x, y, and z are
 	 * implicit aliases, the map will contain the following entries:
 	 * {@code x -> (y, z)}, {@code y -> (x, z)}, {@code z -> (x, y)}.
+	 * 
+	 * <p> 对于隐式别名（即，在同一元注释中声明为同一属性的属性覆盖的属性），map中将有n个条目。 例如，
+	 * 如果x，y和z是隐式别名，则映射将包含以下条目：x  - >（y，z），y  - >（x，z），z  - >（x，y）。
+	 * 
 	 * <p>An empty return value implies that the annotation does not declare
 	 * any attribute aliases.
+	 * 
+	 * <p> 空返回值意味着注释不声明任何属性别名。
+	 * 
 	 * @param annotationType the annotation type to find attribute aliases in
+	 * 
+	 * <p> 要查找的属性别名注解类型
+	 * 
 	 * @return a map containing attribute aliases (never {@code null})
+	 * 
+	 * <p> map包括属性别名(用不为null)
+	 * 
 	 * @since 4.2
 	 */
 	static Map<String, List<String>> getAttributeAliasMap(@Nullable Class<? extends Annotation> annotationType) {
